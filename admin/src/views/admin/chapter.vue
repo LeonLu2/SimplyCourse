@@ -980,11 +980,11 @@
 <script>
   export default {
     name: "chapter",
-    mounted: function(){
+    mounted: function() {
       // sidebar激活样式方法一
-      //this.$parent.activeSidebar("business-chapter-sidebar");
+      // this.$parent.activeSidebar("business-chapter-sidebar");
     },
-    methods:{
+    methods: {
     }
   }
 </script>
