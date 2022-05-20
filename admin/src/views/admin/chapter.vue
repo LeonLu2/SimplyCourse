@@ -132,34 +132,48 @@
           if (resp.success) {
             $("#form-modal").modal("hide");
             _this.list(1);
-            toast.success("Saved!");
+            Toast.success("Saved!");
           }
         })
       },
       del(id) {
         let _this = this;
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-          if (result.value) {
-            Loading.show();
-            _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id).then((response) => {
-              Loading.hide();
-              console.log("删除大章列表结果：", response);
-              let resp = response.data;
-              if (resp.success) {
-                _this.list(1);
-                toast.success("Deleted!")
-              }
-            })
-          }
-        })
+
+        Confirm.show("Deleting the chapter is non-revertible，still want to delete?", function () {
+          Loading.show();
+          _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id).then((response)=>{
+            Loading.hide();
+            console.log("删除大章列表结果：", response);
+            let resp = response.data;
+            if (resp.success) {
+              _this.list(1);
+              Toast.success("Deleted!");
+            }
+          })
+        });
+
+        // Swal.fire({
+        //   title: 'Are you sure?',
+        //   text: "You won't be able to revert this!",
+        //   icon: 'warning',
+        //   showCancelButton: true,
+        //   confirmButtonColor: '#3085d6',
+        //   cancelButtonColor: '#d33',
+        //   confirmButtonText: 'Yes, delete it!'
+        // }).then((result) => {
+        //   if (result.value) {
+        //     Loading.show();
+        //     _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id).then((response) => {
+        //       Loading.hide();
+        //       console.log("删除大章列表结果：", response);
+        //       let resp = response.data;
+        //       if (resp.success) {
+        //         _this.list(1);
+        //         Toast.success("Deleted!")
+        //       }
+        //     })
+        //   }
+        // })
       }
     }
   }
