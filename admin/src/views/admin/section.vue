@@ -18,16 +18,16 @@
       <thead>
       <tr>
         <th>ID</th>
-        <th>Title</th>
-        <th>Course</th>
-        <th>Chapter</th>
-        <th>Video</th>
-        <th>Time</th>
-        <th>Fee</th>
-        <th>Sequence</th>
-        <th>Created time</th>
-        <th>Edit time</th>
-        <th>Action</th>
+        <th>标题</th>
+        <th>课程</th>
+        <th>大章</th>
+        <th>视频</th>
+        <th>时长</th>
+        <th>收费</th>
+        <th>顺序</th>
+        <th>创建时间</th>
+        <th>修改时间</th>
+        <th>操作</th>
       </tr>
       </thead>
 
@@ -73,55 +73,55 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Title</label>
+                <label class="col-sm-2 control-label">标题</label>
                 <div class="col-sm-10">
                   <input v-model="section.title" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Course</label>
+                <label class="col-sm-2 control-label">课程</label>
                 <div class="col-sm-10">
                   <input v-model="section.courseId" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Chapter</label>
+                <label class="col-sm-2 control-label">大章</label>
                 <div class="col-sm-10">
                   <input v-model="section.chapterId" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Video</label>
+                <label class="col-sm-2 control-label">视频</label>
                 <div class="col-sm-10">
                   <input v-model="section.video" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Length</label>
+                <label class="col-sm-2 control-label">时长</label>
                 <div class="col-sm-10">
                   <input v-model="section.time" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Fee</label>
+                <label class="col-sm-2 control-label">收费</label>
                 <div class="col-sm-10">
                   <input v-model="section.charge" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Sequence</label>
+                <label class="col-sm-2 control-label">顺序</label>
                 <div class="col-sm-10">
                   <input v-model="section.sort" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Create time</label>
+                <label class="col-sm-2 control-label">创建时间</label>
                 <div class="col-sm-10">
                   <input v-model="section.createdAt" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Edit time</label>
+                <label class="col-sm-2 control-label">修改时间</label>
                 <div class="col-sm-10">
                   <input v-model="section.updatedAt" class="form-control">
                 </div>
@@ -129,8 +129,8 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <button v-on:click="save()" type="button" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button v-on:click="save()" type="button" class="btn btn-primary">保存</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -201,6 +201,13 @@
         let _this = this;
 
         // 保存校验
+        if (1 != 1
+          || !Validator.require(_this.section.title, "标题")
+          || !Validator.length(_this.section.title, "标题", 1, 50)
+          || !Validator.length(_this.section.video, "视频", 1, 200)
+        ) {
+          return;
+        }
 
         Loading.show();
         _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/section/save', _this.section).then((response)=>{
