@@ -76,7 +76,6 @@
 </template>
 
 <script>
-  import Swal from 'sweetalert2';
   import Pagination from "../../components/pagination";
   export default {
     components: {Pagination},
@@ -95,17 +94,27 @@
       // this.$parent.activeSidebar("business-chapter-sidebar");
     },
     methods: {
+      /**
+       * click add
+       */
       add() {
         let _this = this;
         _this.chapter = {};
         $("#form-modal").modal("show");
       },
 
+      /**
+       * click edit
+       */
       edit(chapter) {
         let _this = this;
         _this.chapter = $.extend({}, chapter);
         $("#form-modal").modal("show");
       },
+
+      /**
+       * click refresh
+       */
       list(page) {
         let _this = this;
         Loading.show();
@@ -115,13 +124,15 @@
               size: _this.$refs.pagination.size,
             }).then((response)=>{
           Loading.hide();
-          console.log("查询大章列表结果：", response);
           let resp = response.data;
           _this.chapters = resp.content.list;
           _this.$refs.pagination.render(page, resp.content.total);
         })
       },
 
+      /**
+       * click save
+       */
       save(page) {
         let _this = this;
 
@@ -135,7 +146,6 @@
         Loading.show();
         _this.$ajax.post('http://127.0.0.1:9000/business/admin/chapter/save', _this.chapter).then((response) => {
           Loading.hide();
-          console.log("保存大章列表结果：", response);
           let resp = response.data;
           if (resp.success) {
             $("#form-modal").modal("hide");
@@ -146,6 +156,10 @@
           }
         })
       },
+
+      /**
+       * click delete
+       */
       del(id) {
         let _this = this;
 
@@ -153,7 +167,6 @@
           Loading.show();
           _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id).then((response)=>{
             Loading.hide();
-            console.log("删除大章列表结果：", response);
             let resp = response.data;
             if (resp.success) {
               _this.list(1);
@@ -161,29 +174,6 @@
             }
           })
         });
-
-        // Swal.fire({
-        //   title: 'Are you sure?',
-        //   text: "You won't be able to revert this!",
-        //   icon: 'warning',
-        //   showCancelButton: true,
-        //   confirmButtonColor: '#3085d6',
-        //   cancelButtonColor: '#d33',
-        //   confirmButtonText: 'Yes, delete it!'
-        // }).then((result) => {
-        //   if (result.value) {
-        //     Loading.show();
-        //     _this.$ajax.delete('http://127.0.0.1:9000/business/admin/chapter/delete/' + id).then((response) => {
-        //       Loading.hide();
-        //       console.log("删除大章列表结果：", response);
-        //       let resp = response.data;
-        //       if (resp.success) {
-        //         _this.list(1);
-        //         Toast.success("Deleted!")
-        //       }
-        //     })
-        //   }
-        // })
       }
     }
   }

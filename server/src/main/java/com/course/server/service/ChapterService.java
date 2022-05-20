@@ -23,6 +23,9 @@ public class ChapterService {
     @Resource
     private ChapterMapper chapterMapper;
 
+    /**
+     * list query
+     */
     public void list(PageDto pageDto) {
         PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
         ChapterExample chapterExample = new ChapterExample();
@@ -40,6 +43,9 @@ public class ChapterService {
         pageDto.setList(chapterDtoList);
     }
 
+    /**
+     * save, if null id then add, if non-null id then update
+     */
     public void save(ChapterDto chapterDto) {
         Chapter chapter = CopyUtil.copy(chapterDto, Chapter.class);
         if (StringUtils.isEmpty(chapterDto.getId())) {
@@ -49,11 +55,17 @@ public class ChapterService {
         }
     }
 
+    /**
+     * add
+     */
     private void insert(Chapter chapter) {
         chapter.setId(UuidUtil.getShortUuid());
         chapterMapper.insert(chapter);
     }
 
+    /**
+     * update
+     */
     private void update(Chapter chapter) {
         chapterMapper.updateByPrimaryKey(chapter);
     }
