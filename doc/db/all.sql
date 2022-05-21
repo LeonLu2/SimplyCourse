@@ -18,7 +18,7 @@ create table course (
 ) engine=innodb default charset=utf8mb4 comment='课程';
 
 INSERT INTO course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-VALUES ('00000001', '测试课程01', '这是一门测试课程', 7200, 19.9, '', 1, 'C', 'D', 100, 0, now(), now());
+VALUES ('00000001', 'Java, C++入门课程', '这是一门测试课程, 学习java, C++,和数据结构', 7200, 19.9, '', 1, 'C', 'D', 100, 0, now(), now());
 
 
 -- chapters
@@ -30,20 +30,20 @@ create table `chapter` (
   primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='大章';
 
-insert into `chapter` (id, course_id, name) values ('00000001', '00000000', '测试大章01');
-insert into `chapter` (id, course_id, name) values ('00000002', '00000000', '测试大章02');
-insert into `chapter` (id, course_id, name) values ('00000003', '00000000', '测试大章03');
-insert into `chapter` (id, course_id, name) values ('00000004', '00000000', '测试大章04');
-insert into `chapter` (id, course_id, name) values ('00000005', '00000000', '测试大章05');
-insert into `chapter` (id, course_id, name) values ('00000006', '00000000', '测试大章06');
-insert into `chapter` (id, course_id, name) values ('00000007', '00000000', '测试大章07');
-insert into `chapter` (id, course_id, name) values ('00000008', '00000000', '测试大章08');
-insert into `chapter` (id, course_id, name) values ('00000009', '00000000', '测试大章09');
-insert into `chapter` (id, course_id, name) values ('00000010', '00000000', '测试大章10');
-insert into `chapter` (id, course_id, name) values ('00000011', '00000000', '测试大章11');
-insert into `chapter` (id, course_id, name) values ('00000012', '00000000', '测试大章12');
-insert into `chapter` (id, course_id, name) values ('00000013', '00000000', '测试大章13');
-insert into `chapter` (id, course_id, name) values ('00000014', '00000000', '测试大章14');
+insert into `chapter` (id, course_id, name) values ('00000001', '00000001', '测试大章01');
+insert into `chapter` (id, course_id, name) values ('00000002', '00000001', '测试大章02');
+insert into `chapter` (id, course_id, name) values ('00000003', '00000001', '测试大章03');
+insert into `chapter` (id, course_id, name) values ('00000004', '00000001', '测试大章04');
+insert into `chapter` (id, course_id, name) values ('00000005', '00000001', '测试大章05');
+insert into `chapter` (id, course_id, name) values ('00000006', '00000001', '测试大章06');
+insert into `chapter` (id, course_id, name) values ('00000007', '00000001', '测试大章07');
+insert into `chapter` (id, course_id, name) values ('00000008', '00000001', '测试大章08');
+insert into `chapter` (id, course_id, name) values ('00000009', 'F13oUY9o', '测试大章09');
+insert into `chapter` (id, course_id, name) values ('00000010', 'F13oUY9o', '测试大章10');
+insert into `chapter` (id, course_id, name) values ('00000011', 'F13oUY9o', '测试大章11');
+insert into `chapter` (id, course_id, name) values ('00000012', 'F13oUY9o', '测试大章12');
+insert into `chapter` (id, course_id, name) values ('00000013', 'F13oUY9o', '测试大章13');
+insert into `chapter` (id, course_id, name) values ('00000014', 'F13oUY9o', '测试大章14');
 
 -- sections
 DROP TABLE IF EXISTS `section`;
