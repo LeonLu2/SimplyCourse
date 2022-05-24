@@ -41,13 +41,13 @@ insert into `chapter` (id, course_id, name) values ('00000004', '00000001', '测
 insert into `chapter` (id, course_id, name) values ('00000005', '00000001', '测试大章05');
 insert into `chapter` (id, course_id, name) values ('00000006', '00000001', '测试大章06');
 insert into `chapter` (id, course_id, name) values ('00000007', '00000001', '测试大章07');
-insert into `chapter` (id, course_id, name) values ('00000008', '00000001', '测试大章08');
-insert into `chapter` (id, course_id, name) values ('00000009', 'F13oUY9o', '测试大章09');
-insert into `chapter` (id, course_id, name) values ('00000010', 'F13oUY9o', '测试大章10');
-insert into `chapter` (id, course_id, name) values ('00000011', 'F13oUY9o', '测试大章11');
-insert into `chapter` (id, course_id, name) values ('00000012', 'F13oUY9o', '测试大章12');
-insert into `chapter` (id, course_id, name) values ('00000013', 'F13oUY9o', '测试大章13');
-insert into `chapter` (id, course_id, name) values ('00000014', 'F13oUY9o', '测试大章14');
+insert into `chapter` (id, course_id, name) values ('00000008', '00000002', '测试大章08');
+insert into `chapter` (id, course_id, name) values ('00000009', '00000002', '测试大章09');
+insert into `chapter` (id, course_id, name) values ('00000010', '00000002', '测试大章10');
+insert into `chapter` (id, course_id, name) values ('00000011', '00000002', '测试大章11');
+insert into `chapter` (id, course_id, name) values ('00000012', '00000002', '测试大章12');
+insert into `chapter` (id, course_id, name) values ('00000013', '00000003', '测试大章13');
+insert into `chapter` (id, course_id, name) values ('00000014', '00000003', '测试大章14');
 
 -- sections
 DROP TABLE IF EXISTS `section`;
@@ -66,9 +66,13 @@ CREATE TABLE `section` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='小节';
 
 INSERT INTO `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
-VALUES ('00000001', '测试小节01', '00000001', '00000001', '', 500, 'F', 1, now(), now());
+VALUES ('00000001', '测试小节01', '00000001', '00000001', '', 100, 'F', 1, now(), now());
 INSERT INTO `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
 VALUES ('00000002', '测试小节02', '00000001', '00000001', '', 500, 'F', 1, now(), now());
+INSERT INTO `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
+VALUES ('00000003', '测试小节03', '00000002', '00000008', '', 200, 'F', 1, now(), now());
+INSERT INTO `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
+VALUES ('00000004', '测试小节04', '00000003', '00000013', '', 300, 'F', 1, now(), now());
 
 -- 分类
 drop table if exists `category`;
@@ -145,12 +149,12 @@ create table `course_content` (
 ) engine=innodb default charset=utf8mb4 comment='课程内容';
 
 # ---------------------- 测试
-drop table if exists `test`;
-create table `test` (
-  `id` char(8) not null default '' comment 'id',
-  `name` varchar(50) comment '名称',
-  primary key (`id`)
-) engine=innodb default charset=utf8mb4 comment='测试';
-
-insert into `test` (id, name) values (1, '测试');
-insert into `test` (id, name) values (2, '测试2');
+# drop table if exists `test`;
+# create table `test` (
+#   `id` char(8) not null default '' comment 'id',
+#   `name` varchar(50) comment '名称',
+#   primary key (`id`)
+# ) engine=innodb default charset=utf8mb4 comment='测试';
+#
+# insert into `test` (id, name) values (1, '测试');
+# insert into `test` (id, name) values (2, '测试2');
