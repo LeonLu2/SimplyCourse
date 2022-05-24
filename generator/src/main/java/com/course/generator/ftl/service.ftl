@@ -62,7 +62,7 @@ public class ${Domain}Service {
     private void insert(${Domain} ${domain}) {
         <#list typeSet as type>
             <#if type=='Date'>
-        import java.util.Date;
+        Date now = new Date();
             </#if>
         </#list>
         <#list fieldList as field>
