@@ -20,7 +20,9 @@ create table course (
 INSERT INTO course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
 VALUES ('00000001', 'Java, C++入门课程', '这是一门测试课程, 学习java, C++,和数据结构', 7200, 19.9, '', 1, 'C', 'D', 100, 0, now(), now());
 INSERT INTO course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-VALUES ('00000002', '机器学习高阶课程', '这是一门测试课程, 学习机器学习算法与模式', 7200, 200.9, '', 1, 'C', 'D', 100, 0, now(), now());
+VALUES ('00000002', '机器学习高阶课程', '这是一门测试课程, 学习机器学习算法与模式', 2500, 200.9, '', 1, 'C', 'D', 100, 1, now(), now());
+INSERT INTO course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
+VALUES ('00000003', 'Python实战', '这是一门测试课程, 学习Python', 900, 20.9, '', 1, 'C', 'D', 100, 2, now(), now());
 
 
 -- chapters
