@@ -7,9 +7,9 @@ create table course (
   time int default 0 comment '时长|单位秒',
   price decimal(8,2) default 0.00 comment '价格（元）',
   image varchar(100) comment '封面',
-  level char(1) comment '级别|枚举[CourseLevelEnum]：ONE("1", "初级"),TWO("2", "中级"),THREE("3", "高级")',
-  charge char(1) comment '收费|枚举[CourseChargeEnum]：CHARGE("C", "收费"),FREE("F", "免费")',
-  status char(1) comment '状态|枚举[CourseStatusEnum]：PUBLISH("P", "发布"),DRAFT("D", "草稿")',
+  level char(1) comment '级别|枚举[courselevelenum]：one("1", "初级"),two("2", "中级"),three("3", "高级")',
+  charge char(1) comment '收费|枚举[coursechargeenum]：charge("c", "收费"),free("f", "免费")',
+  status char(1) comment '状态|枚举[coursestatusenum]：publish("p", "发布"),draft("d", "草稿")',
   enroll integer default 0 comment '报名数',
   sort int comment '顺序',
   created_at datetime(3) comment '创建时间',
@@ -17,19 +17,20 @@ create table course (
   primary key (id)
 ) engine=innodb default charset=utf8mb4 comment='课程';
 
-INSERT INTO course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-VALUES ('00000001', 'Java, C++入门课程', '这是一门测试课程, 学习java, C++,和数据结构', 7200, 19.9, '', 1, 'C', 'D', 100, 0, now(), now());
-INSERT INTO course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-VALUES ('00000002', '机器学习高阶课程', '这是一门测试课程, 学习机器学习算法与模式', 2500, 200.9, '', 1, 'C', 'D', 100, 1, now(), now());
-INSERT INTO course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-VALUES ('00000003', 'Python实战', '这是一门测试课程, 学习Python', 900, 20.9, '', 1, 'C', 'D', 100, 2, now(), now());
+insert into course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
+values ('00000001', 'java, c++入门课程', '这是一门测试课程, 学习java, c++,和数据结构', 7200, 19.9, '', 1, 'c', 'd', 100, 0, now(), now());
+insert into course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
+values ('00000002', '机器学习高阶课程', '这是一门测试课程, 学习机器学习算法与模式', 2500, 200.9, '', 1, 'c', 'd', 100, 1, now(), now());
+insert into course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
+values ('00000003', 'python实战', '这是一门测试课程, 学习python', 900, 20.9, '', 1, 'c', 'd', 100, 2, now(), now());
 
+alter table `course` add column (`teacher_id` char(8) comment '讲师|teacher.id');
 
 -- chapters
 drop table if exists `chapter`;
 create table `chapter` (
-  `id` char(8) not null comment 'ID',
-  `course_id` char(8) comment '课程ID',
+  `id` char(8) not null comment 'id',
+  `course_id` char(8) comment '课程id',
   `name` varchar(50) comment '名称',
   primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='大章';
@@ -50,29 +51,29 @@ insert into `chapter` (id, course_id, name) values ('00000013', '00000003', '测
 insert into `chapter` (id, course_id, name) values ('00000014', '00000003', '测试大章14');
 
 -- sections
-DROP TABLE IF EXISTS `section`;
-CREATE TABLE `section` (
-  `id` CHAR(8) NOT NULL DEFAULT '' COMMENT 'ID',
-  `title` VARCHAR(50) NOT NULL COMMENT '标题',
-  `course_id` CHAR(8) COMMENT '课程|course.id',
-  `chapter_id` CHAR(8) COMMENT '大章|chapter.id',
-  `video` VARCHAR(200) COMMENT '视频',
-  `time` INT COMMENT '时长|单位秒',
-  `charge` CHAR(1) COMMENT '收费|C 收费；F 免费',
-  `sort` INT COMMENT '顺序',
-  `created_at` DATETIME(3) COMMENT '创建时间',
-  `updated_at` DATETIME(3) COMMENT '修改时间',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='小节';
+drop table if exists `section`;
+create table `section` (
+  `id` char(8) not null default '' comment 'id',
+  `title` varchar(50) not null comment '标题',
+  `course_id` char(8) comment '课程|course.id',
+  `chapter_id` char(8) comment '大章|chapter.id',
+  `video` varchar(200) comment '视频',
+  `time` int comment '时长|单位秒',
+  `charge` char(1) comment '收费|c 收费；f 免费',
+  `sort` int comment '顺序',
+  `created_at` datetime(3) comment '创建时间',
+  `updated_at` datetime(3) comment '修改时间',
+  primary key (`id`)
+) engine=innodb default charset=utf8mb4 comment='小节';
 
-INSERT INTO `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
-VALUES ('00000001', '测试小节01', '00000001', '00000001', '', 100, 'F', 1, now(), now());
-INSERT INTO `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
-VALUES ('00000002', '测试小节02', '00000001', '00000001', '', 500, 'F', 1, now(), now());
-INSERT INTO `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
-VALUES ('00000003', '测试小节03', '00000002', '00000008', '', 200, 'F', 1, now(), now());
-INSERT INTO `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
-VALUES ('00000004', '测试小节04', '00000003', '00000013', '', 300, 'F', 1, now(), now());
+insert into `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
+values ('00000001', '测试小节01', '00000001', '00000001', '', 100, 'f', 1, now(), now());
+insert into `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
+values ('00000002', '测试小节02', '00000001', '00000001', '', 500, 'f', 1, now(), now());
+insert into `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
+values ('00000003', '测试小节03', '00000002', '00000008', '', 200, 'f', 1, now(), now());
+insert into `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
+values ('00000004', '测试小节04', '00000003', '00000013', '', 300, 'f', 1, now(), now());
 
 -- 分类
 drop table if exists `category`;
@@ -160,9 +161,9 @@ create table `teacher` (
   `intro` varchar(500) comment '简介',
   primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='讲师';
-insert into `teacher` (id, name, nickname, image, position, motto, intro) values ('abcdefgh', 'Tom', 'Tommy', '', 'Tokyo', 'Everyday better', 'from US, good at java');
-insert into `teacher` (id, name, nickname, image, position, motto, intro) values ('abcdefgi', 'Jack', 'J', '', 'US', 'good job', 'nothing');
-insert into `teacher` (id, name, nickname, image, position, motto, intro) values ('abcdefgj', 'Leon', '?', '', 'China', 'dont do it next time', 'are you ready!');
+insert into `teacher` (id, name, nickname, image, position, motto, intro) values ('abcdefgh', 'tom', 'tommy', '', 'tokyo', 'everyday better', 'from us, good at java');
+insert into `teacher` (id, name, nickname, image, position, motto, intro) values ('abcdefgi', 'jack', 'j', '', 'us', 'good job', 'nothing');
+insert into `teacher` (id, name, nickname, image, position, motto, intro) values ('abcdefgj', 'leon', '?', '', 'china', 'dont do it next time', 'are you ready!');
 
 # ---------------------- 测试
 # drop table if exists `test`;
