@@ -4,7 +4,6 @@ import com.course.server.dto.FileDto;
 import com.course.server.dto.ResponseDto;
 import com.course.server.enums.FileUseEnum;
 import com.course.server.service.FileService;
-import com.course.server.util.UuidUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,18 +38,18 @@ public class UploadController {
 
     @RequestMapping("/upload")
     public ResponseDto upload(@RequestParam MultipartFile shard,
-                               String use,
-                               String name,
-                               String suffix,
-                               Integer size,
-                               Integer shardIndex,
-                               Integer shardSize,
-                               Integer shardTotal) throws IOException {
-         LOG.info("上传文件开始");
+                              String use,
+                              String name,
+                              String suffix,
+                              Integer size,
+                              Integer shardIndex,
+                              Integer shardSize,
+                              Integer shardTotal,
+                              String key) throws IOException {
+        LOG.info("上传文件开始");
 
         // 保存文件到本地
         FileUseEnum useEnum = FileUseEnum.getByCode(use);
-        String key = UuidUtil.getShortUuid();
 
         //如果文件夹不存在则创建
         String dir = useEnum.name().toLowerCase();
@@ -94,13 +93,13 @@ public class UploadController {
 
         try {
             // 读取第一个分片
-            fileInputStream = new FileInputStream(new File(FILE_PATH + "/course/TRvvSVli.mp4"));
+            fileInputStream = new FileInputStream(new File(FILE_PATH + "/course/"));
             while ((len = fileInputStream.read(byt)) != -1) {
                 outputStream.write(byt, 0, len);
             }
 
             // 读取第二个分片
-            fileInputStream = new FileInputStream(new File(FILE_PATH + "/course/431Tv76i.mp4"));
+            fileInputStream = new FileInputStream(new File(FILE_PATH + "/course/"));
             while ((len = fileInputStream.read(byt)) != -1) {
                 outputStream.write(byt, 0, len);
             }
