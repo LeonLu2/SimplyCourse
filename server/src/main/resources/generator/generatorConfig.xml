@@ -37,7 +37,7 @@
         <!-- mapper类的位置 -->
         <javaClientGenerator targetProject="src\main\java"
                              targetPackage="com.course.server.mapper"
-                             type="XMLMAPPER" />
+                             type="XMLMAPPER"/>
 
         <!--        <table tableName="test" domainObjectName="Test"/>-->
         <!--        <table tableName="chapter" domainObjectName="Chapter"/>-->
@@ -45,8 +45,8 @@
         <!--                <table tableName="course" domainObjectName="Course"/>-->
         <!--        <table tableName="category" domainObjectName="Category"/>-->
         <!--        <table tableName="course_content" domainObjectName="CourseContent"/>-->
-        <table tableName="course_content_file" domainObjectName="CourseContentFile"/>
+        <!--        <table tableName="course_content_file" domainObjectName="CourseContentFile"/>-->
         <!--        <table tableName="teacher" domainObjectName="Teacher"/>-->
-        <!--        <table tableName="file" domainObjectName="File"/>-->
+        <table tableName="file" domainObjectName="File"/>
     </context>
 </generatorConfiguration>
