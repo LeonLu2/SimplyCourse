@@ -56,6 +56,7 @@ public class CourseService {
     /**
      * 保存，id有值时更新，无值时新增
      */
+    @Transactional
     public void save(CourseDto courseDto) {
         Course course = CopyUtil.copy(courseDto, Course.class);
         if (StringUtils.isEmpty(courseDto.getId())) {

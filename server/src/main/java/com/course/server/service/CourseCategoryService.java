@@ -11,6 +11,7 @@ import com.course.server.util.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -73,6 +74,7 @@ public class CourseCategoryService {
      * 根据某一课程，先清空课程分类，再保存课程分类
      * @param dtoList
      */
+    @Transactional
     public void saveBatch(String courseId, List<CategoryDto> dtoList) {
         CourseCategoryExample example = new CourseCategoryExample();
         example.createCriteria().andCourseIdEqualTo(courseId);
