@@ -12,36 +12,42 @@
     <artifactId>file</artifactId>
 
     <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
 
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-            </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
-            <!-- 集成mybatis -->
-         			<dependency>
-         				<groupId>org.mybatis.spring.boot</groupId>
-         				<artifactId>mybatis-spring-boot-starter</artifactId>
-         			</dependency>
-         			<dependency>
-         				<groupId>mysql</groupId>
-         				<artifactId>mysql-connector-java</artifactId>
-         				<version>5.1.37</version>
-         			</dependency>
+        <!-- 集成mybatis -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.37</version>
+        </dependency>
 
-            <!-- 热部署DevTools -->
-                    <dependency>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-devtools</artifactId>
-                    </dependency>
-                    <dependency>
-         				<groupId>com.course</groupId>
-         				<artifactId>server</artifactId>
-         			</dependency>
+        <!-- 热部署DevTools -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.course</groupId>
+            <artifactId>server</artifactId>
+        </dependency>
+
+        <!-- 阿里云oss -->
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+        </dependency>
         </dependencies>
 
     <properties>
