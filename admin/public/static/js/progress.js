@@ -44,6 +44,6 @@ Progress = {
     setTimeout(function () {
       $("#progress-div").remove();
       $("#progress-overlay").remove();
-    }, 700);
+    }, 800);
   }
 };
