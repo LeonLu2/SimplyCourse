@@ -140,25 +140,29 @@ public class SectionDto {
         this.updatedAt = updatedAt;
     }
 
+    public String getVod() {
+        return vod;
+    }
+
+    public void setVod(String vod) {
+        this.vod = vod;
+    }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", title=").append(title);
-        sb.append(", courseId=").append(courseId);
-        sb.append(", chapterId=").append(chapterId);
-        sb.append(", video=").append(video);
+        final StringBuffer sb = new StringBuffer("SectionDto{");
+        sb.append("id='").append(id).append('\'');
+        sb.append(", title='").append(title).append('\'');
+        sb.append(", courseId='").append(courseId).append('\'');
+        sb.append(", chapterId='").append(chapterId).append('\'');
+        sb.append(", video='").append(video).append('\'');
         sb.append(", time=").append(time);
-        sb.append(", charge=").append(charge);
+        sb.append(", charge='").append(charge).append('\'');
         sb.append(", sort=").append(sort);
         sb.append(", createdAt=").append(createdAt);
         sb.append(", updatedAt=").append(updatedAt);
-        sb.append("]");
+        sb.append(", vod='").append(vod).append('\'');
+        sb.append('}');
         return sb.toString();
     }
-
 }
