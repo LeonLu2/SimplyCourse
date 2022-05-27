@@ -31,3 +31,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### OSS ###
+aliyun-sdk-oss-3.10.2.jar
+commons-codec-1.9.jar
+commons-logging-1.2.jar
+hamcrest-core-1.1.jar
+httpclient-4.4.1.jar
+httpcore-4.4.1.jar
+jdom2-2.0.6.jar
