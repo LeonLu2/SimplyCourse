@@ -438,7 +438,7 @@
           <li class="">
             <a href="#" class="dropdown-toggle">
               <i class="menu-icon fa fa-list"></i>
-              <span class="menu-text"> 文件管理 </span>
+              <span class="menu-text"> Documents </span>
 
               <b class="arrow fa fa-angle-down"></b>
             </a>
