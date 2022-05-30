@@ -303,7 +303,7 @@
                 <li class="divider"></li>
 
                 <li>
-                  <a href="#">
+                  <a v-on:click="logout()" href="#">
                     <i class="ace-icon fa fa-power-off"></i>
                     Logout
                   </a>
@@ -561,7 +561,22 @@
           parentLi.siblings().find("li").removeClass("active");
           parentLi.addClass("open active");
         }
-      }
+      },
+
+      logout () {
+        let _this = this;
+        Loading.show();
+        _this.$ajax.get(process.env.VUE_APP_SERVER + '/system/admin/user/logout').then((response)=>{
+          Loading.hide();
+          let resp = response.data;
+          if (resp.success) {
+            Tool.setLoginUser(null);
+            _this.$router.push("/login")
+          } else {
+            Toast.warning(resp.message)
+          }
+        });
+      },
     }
   }
 </script>
