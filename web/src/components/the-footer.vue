@@ -5,8 +5,8 @@
         <p class="float-right">
           <a href="#">Back to top</a>
         </p>
-        <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-        <p>New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/getting-started/introduction/">getting started guide</a>.</p>
+        <p>Welcome to SimplyCourse Online Courses Platform, the college and the future for programmers!</p>
+        <p>2022</p>
       </div>
     </footer>
   </div>

@@ -3,11 +3,12 @@
 
         <section class="jumbotron text-center">
           <div class="container">
-            <h1>Album example</h1>
-            <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+            <h1>Online Courses Platform</h1>
+            <p class="lead text-muted m-3">
+              The online education has just started with millions of courses available online, and they continuously grow to be the most important way people acquire knowledge.
+            </p>
             <p>
-              <a href="#" class="btn btn-primary my-2">Main call to action</a>
-              <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+              <a href="#" class="btn btn-primary my-2 p-3 font-weight-bold">Click to view all courses</a>
             </p>
           </div>
         </section>
