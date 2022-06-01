@@ -18,11 +18,11 @@ create table course (
 ) engine=innodb default charset=utf8mb4 comment='课程';
 
 insert into course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-values ('00000001', 'java, c++入门课程', '这是一门测试课程, 学习java, c++,和数据结构', 7200, 19.9, '', 1, 'c', 'd', 100, 0, now(), now());
+values ('00000001', 'java, c++入门课程', '这是一门测试课程, 学习java, c++,和数据结构', 7200, 19.9, '', 3, 'c', 'p', 100, 0, now(), now());
 insert into course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-values ('00000002', '机器学习高阶课程', '这是一门测试课程, 学习机器学习算法与模式', 2500, 200.9, '', 1, 'c', 'd', 100, 1, now(), now());
+values ('00000002', '机器学习高阶课程', '这是一门测试课程, 学习机器学习算法与模式', 2500, 200.9, '', 2, 'c', 'p', 100, 1, now(), now());
 insert into course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-values ('00000003', 'python实战', '这是一门测试课程, 学习python', 900, 20.9, '', 1, 'c', 'd', 100, 2, now(), now());
+values ('00000003', 'python实战', '这是一门测试课程, 学习python', 900, 20.9, '', 1, 'f', 'p', 100, 2, now(), now());
 
 alter table `course` add column (`teacher_id` char(8) comment '讲师|teacher.id');
 
