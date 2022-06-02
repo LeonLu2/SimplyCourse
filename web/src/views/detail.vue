@@ -44,11 +44,15 @@
               <div class="tab-pane active" id="info" v-html="course.content">
               </div>
               <div class="tab-pane" id="chapter">
-                <div v-for="chapter in chapters" class="chapter">
-                  <div class="chapter-chapter">
-                    <span class="folded-button">{{ chapter.name }}</span>
+                <div v-for="(chapter, i) in chapters" class="chapter">
+                  <div v-on:click="doFolded(chapter, i)" class="chapter-chapter">
+                    <span>{{ chapter.name }}</span>
+                    <span class="pull-right">
+                               <i v-show="chapter.folded" class="fa fa-plus-square" aria-hidden="true"></i>
+                               <i v-show="!chapter.folded" class="fa fa-minus-square" aria-hidden="true"></i>
+                    </span>
                   </div>
-                  <div>
+                  <div v-show="!chapter.folded">
                     <table class="table table-striped">
                       <tr v-for="(s, j) in chapter.sections" class="chapter-section-tr">
                         <td class="col-sm-8 col-xs-12">
@@ -133,6 +137,17 @@ export default {
         }
       })
     },
+
+    /**
+     * 展开/收缩一个章节
+     * @param chapter
+     */
+    doFolded (chapter, i) {
+      let _this = this;
+      chapter.folded = !chapter.folded;
+      // 在v-for里写v-show，只修改属性不起作用，需要$set
+      _this.$set(_this.chapters, i, chapter);
+    },
   }
 }
 </script>
@@ -155,11 +170,14 @@ export default {
   font-size: 1rem;
   color: #555
 }
+
 .course-head a {
 }
+
 .course-head-price {
   font-size: 2rem;
 }
+
 @media (max-width: 700px) {
   .course-head h1 {
     font-size: 1.5rem;
@@ -170,36 +188,45 @@ export default {
 .chapter {
   padding-bottom: 1.25rem;
 }
+
 .chapter-chapter {
   font-size: 1.25rem;
   padding: 1.25rem;
   background-color: #23527c;
   color: white;
+  cursor: pointer;
 }
+
 .chapter-section-tr {
   font-size: 1rem;
 }
-.chapter-section-tr td{
+
+.chapter-section-tr td {
   padding: 1rem 1.25rem;
   vertical-align: middle;
 }
+
 /*鼠标手势*/
-.chapter-section-tr td .section-title{
+.chapter-section-tr td .section-title {
   color: #555;
 }
-.chapter-section-tr td .section-title:hover{
+
+.chapter-section-tr td .section-title:hover {
   color: #23527c;
   font-weight: bolder;
   cursor: pointer;
 }
+
 /*行头小图标*/
-.chapter-section-tr td .section-title i{
+.chapter-section-tr td .section-title i {
   color: #2a6496;
 }
+
 @media (max-width: 700px) {
   .chapter-chapter {
     font-size: 1.2rem;
   }
+
   .chapter-section-tr {
     font-size: 0.9rem;
   }
