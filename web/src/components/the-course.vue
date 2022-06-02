@@ -6,11 +6,11 @@
       <p class="card-text">{{ course.summary }}</p>
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
-          <button type="button" class="btn btn-sm btn-outline-secondary">Details</button>
+          <router-link v-bind:to="'/detail?id=' + course.id" class="btn btn-outline-secondary">Details</router-link>
         </div>
         <div class="text-muted">
           <span class="badge badge-info"><i class="fa fa-yen" aria-hidden="true"></i>&nbsp;{{ course.price }}</span>&nbsp;
-          <span class="badge badge-info"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;123</span>&nbsp;
+          <span class="badge badge-info"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{course.enroll}}</span>&nbsp;
           <span class="badge badge-info">{{COURSE_LEVEL | optionKV(course.level)}}</span>
         </div>
       </div>
