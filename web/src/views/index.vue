@@ -7,7 +7,7 @@
           The online education era has just begun with millions of wonderful courses available online, and they continuously grow to
           be the most important way people acquire knowledge. </p>
         <p>
-          <a href="#" class="btn btn-primary my-2 p-3 font-weight-bold">View All Courses</a>
+          <router-link to="/list" class="btn btn-primary my-2 p-3 font-weight-bold">View All Courses</router-link>
         </p>
       </div>
     </section>
