@@ -71,7 +71,7 @@ alter table `section` add column (`vod` char(32) comment 'vod|阿里云vod');
 insert into `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
 values ('00000001', '测试小节01', '00000001', '00000001', '', 100, 'f', 1, now(), now());
 insert into `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
-values ('00000002', '测试小节02', '00000001', '00000001', '', 500, 'f', 1, now(), now());
+values ('00000002', '测试小节02', '00000001', '00000001', '', 500, 'f', 2, now(), now());
 insert into `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
 values ('00000003', '测试小节03', '00000002', '00000008', '', 200, 'f', 1, now(), now());
 insert into `section` (id, title, course_id, chapter_id, video, time, charge, sort, created_at, updated_at)
