@@ -31,16 +31,29 @@
             </li>
           </ul>
           <span class="text-white">Welcome：</span>
-          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Login/Register</button>
+          <button v-on:click="openLoginModal()" class="btn btn-outline-light my-2 my-sm-0" type="submit">Login/Register</button>
         </div>
       </div>
     </nav>
+
+    <the-login ref="loginComponent"></the-login>
   </header>
 </template>
 
 <script>
 
+import TheLogin from "./login";
 export default {
   name: 'theHeader',
+  components: {TheLogin},
+  methods: {
+    /**
+     * 打开登录注册窗口
+     */
+    openLoginModal() {
+      let _this = this;
+      _this.$refs.loginComponent.openLoginModal();
+    },
+  }
 }
 </script>
