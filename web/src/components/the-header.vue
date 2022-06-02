@@ -6,7 +6,8 @@
           <i class="ace-icon fa fa-video-camera"></i>&nbsp;SimplyCourse
         </router-link>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -19,7 +20,8 @@
               <router-link class="nav-link" to="/list">All Courses</router-link>
             </li>
             <li class="nav-item dropdown active">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false">
                 More
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,8 +32,10 @@
               </div>
             </li>
           </ul>
-          <span class="text-white">Welcome：</span>
-          <button v-on:click="openLoginModal()" class="btn btn-outline-light my-2 my-sm-0" type="submit">Login/Register</button>
+          <span v-show="loginMember.id" class="text-white pr-3">Hello：{{ loginMember.name }}</span>
+          <button v-on:click="openLoginModal()" class="btn btn-outline-light my-2 my-sm-0" type="submit">
+            Login/Register
+          </button>
         </div>
       </div>
     </nav>
@@ -43,9 +47,19 @@
 <script>
 
 import TheLogin from "./login";
+
 export default {
   name: 'theHeader',
   components: {TheLogin},
+  data: function () {
+    return {
+      loginMember: {}
+    }
+  },
+  mounted() {
+    let _this = this;
+    _this.loginMember = Tool.getLoginMember();
+  },
   methods: {
     /**
      * 打开登录注册窗口
@@ -54,6 +68,12 @@ export default {
       let _this = this;
       _this.$refs.loginComponent.openLoginModal();
     },
+
+    setLoginMember(loginMember) {
+      let _this = this;
+      _this.loginMember = loginMember;
+    },
+
   }
 }
 </script>
