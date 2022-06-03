@@ -52,7 +52,7 @@
                 <input v-on:blur="onRegisterMobileCodeBlur()"
                        v-bind:class="registerMobileCodeValidateClass"
                        id="register-mobile-code" class="form-control"
-                       placeholder="verification code" v-model="memberRegister.code">
+                       placeholder="verification code" v-model="memberRegister.smsCode">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" id="register-send-code-btn"
                           v-on:click="sendSmsForRegister()">Send verification code
@@ -65,21 +65,21 @@
               <input v-on:blur="onRegisterNameBlur()"
                      v-bind:class="registerNameValidateClass"
                      id="register-name" v-model="memberRegister.name"
-                     class="form-control" placeholder="昵称">
+                     class="form-control" placeholder="Nickname">
               <span v-show="registerNameValidate === false" class="text-danger">Nicknames can be 2-20 digits of letters, numbers, and '_'</span>
             </div>
             <div class="form-group">
               <input v-on:blur="onRegisterPasswordBlur()"
                      v-bind:class="registerPasswordValidateClass"
                      id="register-password" v-model="memberRegister.passwordOriginal"
-                     class="form-control" placeholder="密码" type="password">
+                     class="form-control" placeholder="Password" type="password">
               <span v-show="registerPasswordValidate === false" class="text-danger">Password has at least 6 digits, with at least 1 letter and 1 number</span>
             </div>
             <div class="form-group">
               <input v-on:blur="onRegisterConfirmPasswordBlur()"
                      v-bind:class="registerConfirmPasswordValidateClass"
                      id="register-confirm-password" v-model="memberRegister.confirm"
-                     class="form-control" placeholder="确认密码"
+                     class="form-control" placeholder="Confirm password"
                      name="memberRegisterConfirm" type="password">
               <span v-show="registerConfirmPasswordValidate === false" class="text-danger">Please provide uniform password</span>
             </div>
@@ -387,7 +387,7 @@ export default {
 
     onRegisterMobileCodeBlur () {
       let _this = this;
-      _this.registerMobileCodeValidate = Pattern.validateMobileCode(_this.memberRegister.code);
+      _this.registerMobileCodeValidate = Pattern.validateMobileCode(_this.memberRegister.smsCode);
       return _this.registerMobileValidate;
     },
 

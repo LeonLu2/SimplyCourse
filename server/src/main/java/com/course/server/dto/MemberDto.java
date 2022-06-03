@@ -42,6 +42,11 @@ public class MemberDto {
   private String imageCodeToken;
 
   /**
+      * 短信验证码
+      */
+     private String smsCode;
+
+  /**
    * 注册时间
    */
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -95,6 +100,14 @@ public class MemberDto {
     this.registerTime = registerTime;
   }
 
+  public String getSmsCode() {
+    return smsCode;
+  }
+
+  public void setSmsCode(String smsCode) {
+    this.smsCode = smsCode;
+  }
+
   public String getImageCode() {
     return imageCode;
   }
@@ -122,6 +135,7 @@ public class MemberDto {
     sb.append(", registerTime=").append(registerTime);
     sb.append(", imageCode='").append(imageCode).append('\'');
     sb.append(", imageCodeToken='").append(imageCodeToken).append('\'');
+    sb.append(", smsCode='").append(smsCode).append('\'');
     sb.append('}');
     return sb.toString();
   }
