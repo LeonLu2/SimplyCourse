@@ -49,7 +49,9 @@
             </div>
             <div class="form-group">
               <div class="input-group">
-                <input id="register-mobile-code" class="form-control"
+                <input v-on:blur="onRegisterMobileCodeBlur()"
+                       v-bind:class="registerMobileCodeValidateClass"
+                       id="register-mobile-code" class="form-control"
                        placeholder="verification code" v-model="memberRegister.code">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" id="register-send-code-btn"
@@ -57,19 +59,29 @@
                   </button>
                 </div>
               </div>
+              <span v-show="registerMobileCodeValidate === false" class="text-danger">Please provide 6 digits verification code</span>
             </div>
             <div class="form-group">
-              <input id="register-name" v-model="memberRegister.name"
-                     class="form-control" placeholder="Nick name">
+              <input v-on:blur="onRegisterNameBlur()"
+                     v-bind:class="registerNameValidateClass"
+                     id="register-name" v-model="memberRegister.name"
+                     class="form-control" placeholder="昵称">
+              <span v-show="registerNameValidate === false" class="text-danger">Nicknames can be 2-20 digits of letters, numbers, and '_'</span>
             </div>
             <div class="form-group">
-              <input id="register-password" v-model="memberRegister.passwordOriginal"
-                     class="form-control" placeholder="Password" type="password">
+              <input v-on:blur="onRegisterPasswordBlur()"
+                     v-bind:class="registerPasswordValidateClass"
+                     id="register-password" v-model="memberRegister.passwordOriginal"
+                     class="form-control" placeholder="密码" type="password">
+              <span v-show="registerPasswordValidate === false" class="text-danger">Password has at least 6 digits, with at least 1 letter and 1 number</span>
             </div>
             <div class="form-group">
-              <input id="register-confirm-password" v-model="memberRegister.confirm"
-                     class="form-control" placeholder="Confirm password"
+              <input v-on:blur="onRegisterConfirmPasswordBlur()"
+                     v-bind:class="registerConfirmPasswordValidateClass"
+                     id="register-confirm-password" v-model="memberRegister.confirm"
+                     class="form-control" placeholder="确认密码"
                      name="memberRegisterConfirm" type="password">
+              <span v-show="registerConfirmPasswordValidate === false" class="text-danger">Please provide uniform password</span>
             </div>
             <div class="form-group">
               <button class="btn btn-primary btn-block submit-button" v-on:click="register()">
@@ -140,6 +152,10 @@ export default {
 
       // 注册框显示错误信息
       registerMobileValidate: null,
+      registerMobileCodeValidate: null,
+      registerPasswordValidate: null,
+      registerNameValidate: null,
+      registerConfirmPasswordValidate: null,
     }
   },
   computed: {
@@ -147,6 +163,30 @@ export default {
       return {
         'border-success': this.registerMobileValidate === true,
         'border-danger': this.registerMobileValidate === false,
+      }
+    },
+    registerMobileCodeValidateClass: function () {
+      return {
+        'border-success': this.registerMobileCodeValidate === true,
+        'border-danger': this.registerMobileCodeValidate === false,
+      }
+    },
+    registerPasswordValidateClass: function () {
+      return {
+        'border-success': this.registerPasswordValidate === true,
+        'border-danger': this.registerPasswordValidate === false,
+      }
+    },
+    registerNameValidateClass: function () {
+      return {
+        'border-success': this.registerNameValidate === true,
+        'border-danger': this.registerNameValidate === false,
+      }
+    },
+    registerConfirmPasswordValidateClass: function () {
+      return {
+        'border-success': this.registerConfirmPasswordValidate === true,
+        'border-danger': this.registerConfirmPasswordValidate === false,
       }
     },
   },
@@ -190,6 +230,18 @@ export default {
 
     register() {
       let _this = this;
+
+      // 提交之前，先校验所有输入框
+      // 注意：当有一个文本框校验为false时，其它不校验
+      let validateResult = _this.onRegisterMobileBlur() &&
+        _this.onRegisterMobileCodeBlur() &&
+        _this.onRegisterNameBlur() &&
+        _this.onRegisterPasswordBlur() &&
+        _this.onRegisterConfirmPasswordBlur();
+      if (!validateResult) {
+        return;
+      }
+
       _this.memberRegister.password = hex_md5(_this.memberRegister.passwordOriginal + KEY);
 
       // 调服务端注册接口
@@ -202,7 +254,6 @@ export default {
         }
       })
     },
-
 
     //---------------登录框-----------------
     login() {
@@ -332,6 +383,33 @@ export default {
       let _this = this;
       _this.registerMobileValidate = Pattern.validateMobile(_this.memberRegister.mobile);
       return _this.registerMobileValidate;
+    },
+
+    onRegisterMobileCodeBlur () {
+      let _this = this;
+      _this.registerMobileCodeValidate = Pattern.validateMobileCode(_this.memberRegister.code);
+      return _this.registerMobileValidate;
+    },
+
+    onRegisterNameBlur () {
+      let _this = this;
+      _this.registerNameValidate = Pattern.validateName(_this.memberRegister.name);
+      return _this.registerMobileValidate;
+    },
+
+    onRegisterPasswordBlur () {
+      let _this = this;
+      _this.registerPasswordValidate = Pattern.validatePasswordWeak(_this.memberRegister.passwordOriginal);
+      return _this.registerMobileValidate;
+    },
+
+    onRegisterConfirmPasswordBlur () {
+      let _this = this;
+      let confirmPassword = $("#register-confirm-password").val();
+      if (Tool.isEmpty(confirmPassword)) {
+        return _this.registerConfirmPasswordValidate = false;
+      }
+      return _this.registerConfirmPasswordValidate = (confirmPassword === _this.memberRegister.passwordOriginal);
     },
   }
 }
