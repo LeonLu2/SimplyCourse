@@ -41,8 +41,11 @@
           </div>
           <div class="register-div" v-show="MODAL_STATUS === STATUS_REGISTER"><h3>Register</h3>
             <div class="form-group">
-              <input id="register-mobile" v-model="memberRegister.mobile"
+              <input v-on:blur="onRegisterMobileBlur()"
+                     v-bind:class="registerMobileValidateClass"
+                     id="register-mobile" v-model="memberRegister.mobile"
                      class="form-control" placeholder="Phone number">
+              <span v-show="registerMobileValidate === false" class="text-danger">Phone number has 10 digits, and one number can only register once</span>
             </div>
             <div class="form-group">
               <div class="input-group">
@@ -133,8 +136,19 @@ export default {
       memberRegister: {},
 
       remember: true, // 记住密码
-      imageCodeToken: ""
+      imageCodeToken: "",
+
+      // 注册框显示错误信息
+      registerMobileValidate: null,
     }
+  },
+  computed: {
+    registerMobileValidateClass: function () {
+      return {
+        'border-success': this.registerMobileValidate === true,
+        'border-danger': this.registerMobileValidate === false,
+      }
+    },
   },
   mounted() {
     let _this = this;
@@ -250,6 +264,11 @@ export default {
      */
     sendSmsForRegister() {
       let _this = this;
+
+      if (!_this.onRegisterMobileBlur()) {
+        return false;
+      }
+
       let sms = {
         mobile: _this.memberRegister.mobile,
         use: SMS_USE.REGISTER.key
@@ -308,6 +327,12 @@ export default {
       }, 1000);
     },
 
+    //-------------------------------- 注册框校验 ----------------------------
+    onRegisterMobileBlur() {
+      let _this = this;
+      _this.registerMobileValidate = Pattern.validateMobile(_this.memberRegister.mobile);
+      return _this.registerMobileValidate;
+    },
   }
 }
 </script>
