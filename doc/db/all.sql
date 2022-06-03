@@ -298,12 +298,23 @@ create table `sms` (
   `mobile` varchar(50) not null comment '手机号',
   `code` char(6) not null comment '验证码',
   `use` char(1) not null comment '用途|枚举[SmsUseEnum]：REGISTER("R", "注册"), FORGET("F", "忘记密码")',
-  `at` datetime not null comment '生成时间',
+  `at` datetime(3) not null comment '生成时间',
   `status` char(1) not null comment '用途|枚举[SmsStatusEnum]：USED("U", "已使用"), NOT_USED("N", "未使用")',
   primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='短信验证码';
 
 insert into `sms` (id, mobile, code, `use`, at, status) values ('00000000', '12345678901', '123456', 'R', now(), 'N');
+
+# 会员课程报名
+drop table if exists `member_course`;
+create table `member_course` (
+  `id` char(8) not null default '' comment 'id',
+  `member_id` char(8) not null comment '会员id',
+  `course_id` char(8) not null comment '课程id',
+  `at` datetime(3) not null comment '报名时间',
+  primary key (`id`),
+  unique key `member_course_unique` (`member_id`, `course_id`)
+) engine=innodb default charset=utf8mb4 comment='会员课程报名';
 
 -- # ---------------------- 测试
 -- # drop table if exists `test`;
