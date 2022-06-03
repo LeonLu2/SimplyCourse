@@ -104,6 +104,29 @@
 
       </div>
 
+      <div class="col-sm-12">
+        <div class="widget-box transparent">
+          <div class="widget-header widget-header-flat">
+            <h4 class="widget-title lighter">
+              <i class="ace-icon fa fa-signal"></i>
+              Sales
+            </h4>
+
+          </div>
+
+          <div class="widget-body">
+            <div class="widget-main padding-4">
+              <div id="sales-charts"></div>
+            </div><!-- /.widget-main -->
+          </div><!-- /.widget-body -->
+        </div><!-- /.widget-box -->
+
+        <div class="space-12"></div>
+
+        <div class="hr hr2 hr-double"></div>
+
+        <div class="space-12"></div>
+      </div><!-- /.col -->
     </div><!-- /.row -->  </div>
 </template>
 
@@ -111,9 +134,46 @@
 export default {
   name: "welcome",
   mounted: function () {
+    let _this = this;
     // sidebar激活样式方法一
     // this.$parent.activeSidebar("welcome-sidebar");
+    _this.drawSaleChart();
   },
-  methods: {}
-}
+  methods: {
+    drawSaleChart() {
+      // 生成随机两组数据
+      let d1 = [];
+      for (let i = 0; i < 30; i += 1) {
+        d1.push([i + 1, 2000 + Math.floor((Math.random()*100)+1)]);
+      }
+      let d2 = [];
+      for (let i = 0; i < 30; i += 1) {
+        d2.push([i + 1, 1900 + Math.floor((Math.random()*100)+1)]);
+      }
+
+      let sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});
+      $.plot("#sales-charts", [
+        { label: "Last 30 days", data: d1 },
+        { label: "Last sales period", data: d2 },
+      ], {
+        hoverable: true,
+        shadowSize: 0,
+        series: {
+          lines: { show: true },
+          points: { show: true }
+        },
+        xaxis: {
+          tickLength: 0
+        },
+        yaxis: {
+          tickLength: 0
+        },
+        grid: {
+          backgroundColor: { colors: [ "#fff", "#fff" ] },
+          borderWidth: 1,
+          borderColor:'#555'
+        }
+      });
+    }
+  }}
 </script>

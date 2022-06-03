@@ -352,7 +352,7 @@
           <li class="" id="welcome-sidebar">
             <router-link to="/welcome">
               <i class="menu-icon fa fa-tachometer"></i>
-              <span class="menu-text"> 欢迎：{{loginUser.name}} </span>
+              <span class="menu-text"> Welcome：{{loginUser.name}} </span>
             </router-link>
 
             <b class="arrow"></b>
