@@ -3,12 +3,12 @@
     <p>
       <button v-show="hasResource('010101')" v-on:click="add()" class="btn btn-white btn-default btn-round">
         <i class="ace-icon fa fa-edit"></i>
-        新增
+        Add
       </button>
       &nbsp;
       <button v-on:click="list(1)" class="btn btn-white btn-default btn-round">
         <i class="ace-icon fa fa-refresh"></i>
-        刷新
+        Refresh
       </button>
     </p>
 
@@ -18,10 +18,10 @@
       <thead>
       <tr>
         <th>id</th>
-        <th>登陆名</th>
-        <th>昵称</th>
-        <th>密码</th>
-        <th>操作</th>
+        <th>Login name</th>
+        <th>Nickname</th>
+        <th>Password</th>
+        <th>Actions</th>
       </tr>
       </thead>
 
@@ -53,24 +53,24 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">表单</h4>
+            <h4 class="modal-title">Table</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
               <div class="form-group">
-                <label class="col-sm-2 control-label">登陆名</label>
+                <label class="col-sm-2 control-label">Login name</label>
                 <div class="col-sm-10">
                   <input v-model="user.loginName" v-bind:disabled="user.id" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">昵称</label>
+                <label class="col-sm-2 control-label">Nickname</label>
                 <div class="col-sm-10">
                   <input v-model="user.name" class="form-control">
                 </div>
               </div>
               <div v-show="!user.id" class="form-group">
-                <label class="col-sm-2 control-label">密码</label>
+                <label class="col-sm-2 control-label">Password</label>
                 <div class="col-sm-10">
                   <input v-model="user.password" type="password" class="form-control">
                 </div>
@@ -78,8 +78,8 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button v-on:click="save()" type="button" class="btn btn-primary">保存</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button v-on:click="save()" type="button" class="btn btn-primary">Save</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -90,12 +90,12 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">修改密码</h4>
+            <h4 class="modal-title">change password</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
               <div class="form-group">
-                <label class="control-label col-sm-2">密码</label>
+                <label class="control-label col-sm-2">password</label>
                 <div class="col-sm-10">
                   <input class="form-control" type="password" v-model="user.password" name="password">
                 </div>
@@ -105,11 +105,11 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-white btn-default btn-round" data-dismiss="modal">
               <i class="ace-icon fa fa-times"></i>
-              取消
+              cancel
             </button>
             <button type="button" class="btn btn-white btn-info btn-round" v-on:click="savePassword()">
               <i class="ace-icon fa fa-plus blue"></i>
-              保存密码
+              save password
             </button>
           </div>
         </div><!-- /.modal-content -->
@@ -176,9 +176,10 @@
         }).then((response)=>{
           Loading.hide();
           let resp = response.data;
-          _this.users = resp.content.list;
-          _this.$refs.pagination.render(page, resp.content.total);
-
+          if (resp.success) {
+            _this.users = resp.content.list;
+            _this.$refs.pagination.render(page, resp.content.total);
+          }
         })
       },
 
