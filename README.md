@@ -34,7 +34,7 @@ system module as a spring boot application
 web module as a vue cli application
 
 
-## Project initilize
+## Project initialize
 * need local installed idea, nodejs，jdk1.8, mysql5.7, navicat
 * download the code and open with idea
 * refresh maven dependencies
