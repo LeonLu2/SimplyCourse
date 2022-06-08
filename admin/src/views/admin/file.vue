@@ -3,7 +3,7 @@
     <p>
       <button v-on:click="list(1)" class="btn btn-white btn-default btn-round">
         <i class="ace-icon fa fa-refresh"></i>
-        刷新
+        Refresh
       </button>
     </p>
 
@@ -13,11 +13,11 @@
       <thead>
       <tr>
         <th>id</th>
-        <th>相对路径</th>
-        <th>文件名</th>
-        <th>后缀</th>
-        <th>大小</th>
-        <th>用途</th>
+        <th>Relative path</th>
+        <th>File name</th>
+        <th>Prefix</th>
+        <th>Size</th>
+        <th>Usage</th>
       </tr>
       </thead>
 
@@ -57,7 +57,7 @@
     },
     methods: {
       /**
-       * 列表查询
+       * query list
        */
       list(page) {
         let _this = this;

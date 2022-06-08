@@ -3,12 +3,12 @@
     <p>
       <button v-on:click="add()" class="btn btn-white btn-default btn-round">
         <i class="ace-icon fa fa-edit"></i>
-        新增
+        Add
       </button>
       &nbsp;
       <button v-on:click="list(1)" class="btn btn-white btn-default btn-round">
         <i class="ace-icon fa fa-refresh"></i>
-        刷新
+        Refresh
       </button>
     </p>
 
@@ -18,9 +18,9 @@
       <thead>
       <tr>
         <th>id</th>
-        <th>角色</th>
-        <th>描述</th>
-        <th>操作</th>
+        <th>Role</th>
+        <th>Description</th>
+        <th>Action</th>
       </tr>
       </thead>
 
@@ -54,18 +54,18 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">表单</h4>
+            <h4 class="modal-title">Form</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
               <div class="form-group">
-                <label class="col-sm-2 control-label">角色</label>
+                <label class="col-sm-2 control-label">Role</label>
                 <div class="col-sm-10">
                   <input v-model="role.name" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">描述</label>
+                <label class="col-sm-2 control-label">Description</label>
                 <div class="col-sm-10">
                   <input v-model="role.desc" class="form-control">
                 </div>
@@ -73,8 +73,8 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button v-on:click="save()" type="button" class="btn btn-primary">保存</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button v-on:click="save()" type="button" class="btn btn-primary">Save</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -86,7 +86,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">角色资源关联配置</h4>
+            <h4 class="modal-title">Role_Resource Config</h4>
           </div>
           <div class="modal-body">
             <ul id="tree" class="ztree"></ul>
@@ -94,11 +94,11 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-white btn-default btn-round" data-dismiss="modal">
               <i class="ace-icon fa fa-times"></i>
-              关闭
+              Close
             </button>
             <button type="button" class="btn btn-white btn-info btn-round" v-on:click="saveResource()">
               <i class="ace-icon fa fa-plus blue"></i>
-              保存
+              Save
             </button>
           </div>
         </div><!-- /.modal-content -->
@@ -111,7 +111,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">角色用户关联配置</h4>
+            <h4 class="modal-title">Role_Resource Config</h4>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -148,11 +148,11 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-white btn-default btn-round" data-dismiss="modal">
               <i class="ace-icon fa fa-times"></i>
-              关闭
+              Close
             </button>
             <button type="button" class="btn btn-white btn-info btn-round" v-on:click="saveUser()">
               <i class="ace-icon fa fa-plus blue"></i>
-              保存
+              Save
             </button>
           </div>
         </div><!-- /.modal-content -->
@@ -186,7 +186,7 @@
     },
     methods: {
       /**
-       * 点击【新增】
+       * click add
        */
       add() {
         let _this = this;
@@ -195,7 +195,7 @@
       },
 
       /**
-       * 点击【编辑】
+       * click edit
        */
       edit(role) {
         let _this = this;
@@ -204,7 +204,7 @@
       },
 
       /**
-       * 列表查询
+       * query list
        */
       list(page) {
         let _this = this;
@@ -222,17 +222,17 @@
       },
 
       /**
-       * 点击【保存】
+       * click save
        */
       save() {
         let _this = this;
 
         // 保存校验
         if (1 != 1
-          || !Validator.require(_this.role.name, "角色")
-          || !Validator.length(_this.role.name, "角色", 1, 50)
-          || !Validator.require(_this.role.desc, "描述")
-          || !Validator.length(_this.role.desc, "描述", 1, 100)
+          || !Validator.require(_this.role.name, "Role")
+          || !Validator.length(_this.role.name, "Role", 1, 50)
+          || !Validator.require(_this.role.desc, "Description")
+          || !Validator.length(_this.role.desc, "Description", 1, 100)
         ) {
           return;
         }
@@ -244,7 +244,7 @@
           if (resp.success) {
             $("#form-modal").modal("hide");
             _this.list(1);
-            Toast.success("保存成功！");
+            Toast.success("Save succeed!");
           } else {
             Toast.warning(resp.message)
           }
@@ -252,25 +252,25 @@
       },
 
       /**
-       * 点击【删除】
+       * click delete
        */
       del(id) {
         let _this = this;
-        Confirm.show("删除角色后不可恢复，确认删除？", function () {
+        Confirm.show("Delete is non-revertible, sure?", function () {
           Loading.show();
           _this.$ajax.delete(process.env.VUE_APP_SERVER + '/system/admin/role/delete/' + id).then((response)=>{
             Loading.hide();
             let resp = response.data;
             if (resp.success) {
               _this.list(1);
-              Toast.success("删除成功！");
+              Toast.success("Delete succeed!");
             }
           })
         });
       },
 
       /**
-       * 点击【编辑】
+       * click edit
        */
       editResource(role) {
         let _this = this;
@@ -280,7 +280,7 @@
       },
 
       /**
-       * 加载资源树
+       * load resource-tree
        */
       loadResource() {
         let _this = this;
@@ -296,7 +296,7 @@
       },
 
       /**
-       * 初始资源树
+       * init resource-tree
        */
       initTree() {
         let _this = this;
@@ -319,12 +319,12 @@
       },
 
       /**
-       * 资源模态框点击【保存】
+       * resource modal click save
        */
       saveResource() {
         let _this = this;
         let resources = _this.zTree.getCheckedNodes();
-        console.log("勾选的资源：", resources);
+        console.log("Chosen resource: ", resources);
 
         // 保存时，只需要保存资源id，所以使用id数组进行参数传递
         let resourceIds = [];
@@ -338,7 +338,7 @@
         }).then((response)=>{
           let resp = response.data;
           if (resp.success) {
-            Toast.success("保存成功!");
+            Toast.success("Save succeed!");
           } else {
             Toast.warning(resp.message);
           }
@@ -346,7 +346,7 @@
       },
 
       /**
-       * 加载角色资源关联记录
+       * load role_resource record
        */
       listRoleResource() {
         let _this = this;
@@ -364,7 +364,7 @@
       },
 
       /**
-       * 点击【用户】
+       * click users
        */
       editUser(role) {
         let _this = this;
@@ -374,7 +374,7 @@
       },
 
       /**
-       * 查询所有用户
+       * query all users
        */
       listUser() {
         let _this = this;
@@ -393,7 +393,7 @@
       },
 
       /**
-       * 角色中增加用户
+       * load users in Role
        */
       addUser(user) {
         let _this = this;
@@ -410,7 +410,7 @@
       },
 
       /**
-       * 角色中删除用户
+       * delete users in Role
        */
       deleteUser(user) {
         let _this = this;
@@ -418,7 +418,7 @@
       },
 
       /**
-       * 角色用户模态框点击【保存】
+       * Role_User modal click save
        */
       saveUser() {
         let _this = this;
@@ -433,10 +433,10 @@
           id: _this.role.id,
           userIds: userIds
         }).then((response)=>{
-          console.log("保存角色用户结果：", response);
+          console.log("Save Role_User result: ", response);
           let resp = response.data;
           if (resp.success) {
-            Toast.success("保存成功!");
+            Toast.success("Save succeed!");
           } else {
             Toast.warning(resp.message);
           }
@@ -444,7 +444,7 @@
       },
 
       /**
-       * 加载角色用户
+       * load Role_users
        */
       listRoleUser() {
         let _this = this;

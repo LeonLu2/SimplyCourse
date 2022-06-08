@@ -12,7 +12,7 @@ Loading = {
     });
   },
   hide: function () {
-    // 本地查询速度太快，loading显示一瞬间，故意做个延迟
+    // loading is too fast, so make some delay
     setTimeout(function () {
       $.unblockUI();
     }, 500)

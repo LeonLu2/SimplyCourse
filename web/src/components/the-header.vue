@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     /**
-     * 打开登录注册窗口
+     * open login/register window
      */
     openLoginModal() {
       let _this = this;
@@ -83,7 +83,7 @@ export default {
         if (resp.success) {
           Tool.setLoginMember(null);
           _this.loginMember = {};
-          Toast.success("退出登录成功");
+          Toast.success("Logout succeed!");
           _this.$router.push("/");
         } else {
           Toast.warning(resp.message);

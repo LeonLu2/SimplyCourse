@@ -139,7 +139,7 @@
     },
     methods: {
       /**
-       * 查找是否有权限
+       * look for resource belongs
        * @param id
        */
       hasResource(id) {
@@ -147,7 +147,7 @@
       },
 
       /**
-       * 点击【新增】
+       * click add
        */
       add() {
         let _this = this;
@@ -156,7 +156,7 @@
       },
 
       /**
-       * 点击【编辑】
+       * click edit
        */
       edit(user) {
         let _this = this;
@@ -165,7 +165,7 @@
       },
 
       /**
-       * 列表查询
+       * query list
        */
       list(page) {
         let _this = this;
@@ -184,17 +184,17 @@
       },
 
       /**
-       * 点击【保存】
+       * click save
        */
       save() {
         let _this = this;
 
         // 保存校验
         if (1 != 1
-          || !Validator.require(_this.user.loginName, "登陆名")
-          || !Validator.length(_this.user.loginName, "登陆名", 1, 50)
-          || !Validator.length(_this.user.name, "昵称", 1, 50)
-          || !Validator.require(_this.user.password, "密码")
+          || !Validator.require(_this.user.loginName, "Login name")
+          || !Validator.length(_this.user.loginName, "Login name", 1, 50)
+          || !Validator.length(_this.user.name, "Nickname", 1, 50)
+          || !Validator.require(_this.user.password, "Password")
         ) {
           return;
         }
@@ -215,25 +215,25 @@
       },
 
       /**
-       * 点击【删除】
+       * click delete
        */
       del(id) {
         let _this = this;
-        Confirm.show("删除用户后不可恢复，确认删除？", function () {
+        Confirm.show("Delete is non-revertible, sure?", function () {
           Loading.show();
           _this.$ajax.delete(process.env.VUE_APP_SERVER + '/system/admin/user/delete/' + id).then((response)=>{
             Loading.hide();
             let resp = response.data;
             if (resp.success) {
               _this.list(1);
-              Toast.success("删除成功！");
+              Toast.success("Delete succeed!");
             }
           })
         });
       },
 
        /**
-        * 点击【重置密码】
+        * click reset password
         */
        editPassword(user) {
          let _this = this;
@@ -243,7 +243,7 @@
        },
 
        /**
-        * 点击【保存密码】
+        * click save password
         */
        savePassword() {
          let _this = this;
@@ -256,7 +256,7 @@
            if (resp.success) {
              $("#edit-password-modal").modal("hide");
              _this.list(1);
-             Toast.success("保存成功！");
+             Toast.success("Save succeed!");
            } else {
              Toast.warning(resp.message)
            }

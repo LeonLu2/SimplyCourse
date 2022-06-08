@@ -15,7 +15,7 @@
     name: 'vod',
     props: {
       text: {
-        default: "上传VOD"
+        default: "VOD upload"
       },
       inputId: {
         default: "vod-upload"

@@ -66,7 +66,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">表单</h4>
+            <h4 class="modal-title">Form</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
@@ -86,7 +86,7 @@
                 <label class="col-sm-2 control-label">Image</label>
                 <div class="col-sm-10">
                   <big-file v-bind:input-id="'image-upload'"
-                            v-bind:text="'上传头像'"
+                            v-bind:text="'upload image'"
                             v-bind:suffixs="['jpg', 'jpeg', 'png']"
                             v-bind:use="FILE_USE.TEACHER.key"
                             v-bind:after-upload="afterUpload">
@@ -152,7 +152,7 @@
     },
     methods: {
       /**
-       * 点击【新增】
+       * click add
        */
       add() {
         let _this = this;
@@ -165,7 +165,7 @@
       },
 
       /**
-       * 点击【编辑】
+       * click edit
        */
       edit(teacher) {
         let _this = this;
@@ -174,7 +174,7 @@
       },
 
       /**
-       * 列表查询
+       * query list
        */
       list(page) {
         let _this = this;
@@ -192,20 +192,20 @@
       },
 
       /**
-       * 点击【保存】
+       * click save
        */
       save() {
         let _this = this;
 
         // 保存校验
         if (1 != 1
-          || !Validator.require(_this.teacher.name, "姓名")
-          || !Validator.length(_this.teacher.name, "姓名", 1, 50)
-          || !Validator.length(_this.teacher.nickname, "昵称", 1, 50)
-          || !Validator.length(_this.teacher.image, "头像", 1, 100)
-          || !Validator.length(_this.teacher.position, "职位", 1, 50)
-          || !Validator.length(_this.teacher.motto, "座右铭", 1, 50)
-          || !Validator.length(_this.teacher.intro, "简介", 1, 500)
+          || !Validator.require(_this.teacher.name, "Teacher name")
+          || !Validator.length(_this.teacher.name, "Teacher name", 1, 50)
+          || !Validator.length(_this.teacher.nickname, "Nickname", 1, 50)
+          || !Validator.length(_this.teacher.image, "Teacher image", 1, 100)
+          || !Validator.length(_this.teacher.position, "Position", 1, 50)
+          || !Validator.length(_this.teacher.motto, "Motto", 1, 50)
+          || !Validator.length(_this.teacher.intro, "Intro", 1, 500)
         ) {
           return;
         }
@@ -218,7 +218,7 @@
           if (resp.success) {
             $("#form-modal").modal("hide");
             _this.list(1);
-            Toast.success("保存成功！");
+            Toast.success("Save succeed!");
           } else {
             Toast.warning(resp.message)
           }
@@ -226,18 +226,18 @@
       },
 
       /**
-       * 点击【删除】
+       * click delete
        */
       del(id) {
         let _this = this;
-        Confirm.show("删除讲师后不可恢复，确认删除？", function () {
+        Confirm.show("Delete is non-revertible, sure?", function () {
           Loading.show();
           _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/teacher/delete/' + id).then((response)=>{
             Loading.hide();
             let resp = response.data;
             if (resp.success) {
               _this.list(1);
-              Toast.success("删除成功！");
+              Toast.success("Delete succeed!");
             }
           })
         });

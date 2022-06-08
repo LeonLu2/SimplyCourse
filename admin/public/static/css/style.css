@@ -1,4 +1,4 @@
-/*表格内容上下居中显示*/
+/*form content display uniformly in middle*/
 .table td {
   vertical-align: middle !important;
 }

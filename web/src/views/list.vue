@@ -5,7 +5,7 @@
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <a v-on:click="onClickLevel1('00000000')" id="category-00000000" href="javascript:;" class="cur">全部</a>
+              <a v-on:click="onClickLevel1('00000000')" id="category-00000000" href="javascript:;" class="cur">All</a>
               <a v-for="o in level1" v-on:click="onClickLevel1(o.id)" v-bind:id="'category-' + o.id"
                  href="javascript:;">{{ o.name }}</a>
             </div>
@@ -17,7 +17,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <a v-on:click="onClickLevel2('11111111')" id="category-11111111" href="javascript:;" class="on">不限</a>
+            <a v-on:click="onClickLevel2('11111111')" id="category-11111111" href="javascript:;" class="on">All</a>
             <a v-for="o in level2" v-on:click="onClickLevel2(o.id)" v-bind:id="'category-' + o.id" href="javascript:;">{{
                 o.name
               }}</a>
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     /**
-     * 查询课程列表
+     * query course list
      */
     listCourse(page) {
       let _this = this;
@@ -91,7 +91,7 @@ export default {
     },
 
     /**
-     * 所有分类查询
+     * all categories query
      */
     allCategory() {
       let _this = this;
@@ -100,7 +100,7 @@ export default {
         let categorys = resp.content;
         _this.categorys = categorys;
 
-        // 将所有记录格式化成树形结构
+        // make all record tree-like
         _this.level1 = [];
         for (let i = 0; i < categorys.length; i++) {
           let c = categorys[i];
@@ -113,32 +113,32 @@ export default {
       })
     },
     /**
-     * 点击一级分类时
+     * click level 1 category
      * @param level1Id
      */
     onClickLevel1(level1Id) {
       let _this = this;
 
-      // 点击一级分类时，设置变量，用于课程筛选
-      // 二级分类id为空，
-      // 如果点击的是【全部】，则一级分类id为空
+      // click level 1, set level1Id
+      // level2Id is null
+      // if click on 'all', level1Id is null
       _this.level2Id = null;
       _this.level1Id = level1Id;
       if (level1Id === "00000000") {
         _this.level1Id = null;
       }
 
-      // 点击一级分类时，显示激活状态
+      // click level 1 activate
       $("#category-" + level1Id).siblings("a").removeClass("cur");
       $("#category-" + level1Id).addClass("cur");
 
-      // 点击一级分类时，二级分类【无限】按钮要设置激活状态("#category-11111111").siblings("a").removeClass("on");
+      // click level 1, 'all' in level 2 needs activate("#category-11111111").siblings("a").removeClass("on");
       $("#category-11111111").addClass("on");
 
-      // 注意：要先把level2中所有的值清空，再往里放
+      // clear all level 2
       _this.level2 = [];
       let categorys = _this.categorys;
-      // 如果点击的是【全部】，则显示所有的二级分类
+      // if click all, display all level 2
       if (level1Id === '00000000') {
         for (let i = 0; i < categorys.length; i++) {
           let c = categorys[i];
@@ -147,7 +147,7 @@ export default {
           }
         }
       }
-      // 如果点击的是某个一级分类，则显示该一级分类下的二级分类
+      // if click some level 1, display its level 2
       if (level1Id !== '00000000') {
         for (let i = 0; i < categorys.length; i++) {
           let c = categorys[i];
@@ -157,12 +157,12 @@ export default {
         }
       }
 
-      // 重新加载课程列表
+      // reload course list
       _this.listCourse(1);
     },
 
     /**
-     * 点击二级分类时
+     * click level 2 category
      * @param level1Id
      */
     onClickLevel2(level2Id) {
@@ -185,7 +185,7 @@ export default {
 }
 </script>
 <style>
-/* 头部 一级分类 */
+/* header category 1 */
 .header-nav {
   height: auto;
   background: #fff;

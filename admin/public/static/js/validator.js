@@ -1,7 +1,7 @@
 Validator = {
   require: function (value, text) {
     if (Tool.isEmpty(value)) {
-      Toast.warning(text + "cannot be null");
+      Toast.warning(text + " cannot be null");
       return false;
     } else {
       return true
@@ -13,7 +13,7 @@ Validator = {
       return true;
     }
     if (!Tool.isLength(value, min, max)) {
-      Toast.warning(text + "length is " + min + "~" + max + " digits");
+      Toast.warning(text + " length is " + min + "~" + max + " digits");
       return false;
     } else {
       return true

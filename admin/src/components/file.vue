@@ -51,7 +51,7 @@
           }
         }
         if (!validateSuffix) {
-          Toast.warning("文件格式不正确！只支持上传：" + suffixs.join(","));
+          Toast.warning("Wrong suffix! Only support suffix：" + suffixs.join(","));
           $("#" + _this.inputId + "-input").val("");
           return;
         }
@@ -63,7 +63,7 @@
         _this.$ajax.post(process.env.VUE_APP_SERVER + '/file/admin/oss-simple', formData).then((response)=>{
           Loading.hide();
           let resp = response.data;
-          console.log("上传文件成功：", resp);
+          console.log("File upload succeed：", resp);
           _this.afterUpload(resp);
           $("#" + _this.inputId + "-input").val("");
         });

@@ -63,7 +63,7 @@
     },
     methods: {
       /**
-       * 渲染分页组件
+       * render pagination
        * @param page
        * @param total
        */
@@ -76,7 +76,7 @@
       },
 
       /**
-       * 查询某一页
+       * query page x
        * @param page
        */
       selectPage(page) {
@@ -96,7 +96,7 @@
       },
 
       /**
-       * 当前要显示在页面上的页码
+       * current page
        * @param total
        * @param current
        * @param length

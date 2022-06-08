@@ -79,7 +79,7 @@
           }
         }
         if (!validateSuffix) {
-          Toast.warning("文件格式不正确！只支持上传：" + suffixs.join(","));
+          Toast.warning("Wrong suffix! Only support suffix：" + suffixs.join(","));
           $("#" + _this.inputId + "-input").val("");
           return;
         }
@@ -107,7 +107,7 @@
 
 
           /**
-           * 检查文件状态，是否已上传过？传到第几个分片？
+           * Whether the file has started upload before; Until which part?
            */
           check (param) {
             let _this = this;
@@ -117,29 +117,29 @@
                 let obj = resp.content;
                 if (!obj) {
                   param.shardIndex = 1;
-                  console.log("没有找到文件记录，从分片1开始上传");
+                  console.log("File record not found, start from part 1");
                   _this.upload(param);
                 } else if (obj.shardIndex === obj.shardTotal) {
                   // 已上传分片 = 分片总数，说明已全部上传完，不需要再上传
-                  Toast.success("文件极速秒传成功！");
+                  Toast.success("File super upload succeed!");
                   _this.afterUpload(resp);
                   $("#" + _this.inputId + "-input").val("");
                 }  else {
                   param.shardIndex = obj.shardIndex + 1;
-                  console.log("找到文件记录，从分片" + param.shardIndex + "开始上传");
+                  console.log("File record found, start from part " + param.shardIndex);
                   _this.upload(param);
                 }
               } else {
-                Toast.warning("文件上传失败");
+                Toast.warning("File upload failed");
                 $("#" + _this.inputId + "-input").val("");
               }
             })
-      },
+          },
 
       /**
-         * 将分片数据转成base64进行上传
-         */
-        upload (param) {
+       * Convert the video part to base64 and upload
+       */
+      upload(param) {
         let _this = this;
         let shardIndex = param.shardIndex;
         let shardTotal = param.shardTotal;
@@ -157,7 +157,7 @@
 
           _this.$ajax.post(process.env.VUE_APP_SERVER + '/file/admin/' + _this.url, param).then((response) => {
             let resp = response.data;
-            console.log("上传文件成功：", resp);
+            console.log("File upload succeed：", resp);
             Progress.show(parseInt(shardIndex * 100 / shardTotal));
             if (shardIndex < shardTotal) {
               // 上传下一个分片

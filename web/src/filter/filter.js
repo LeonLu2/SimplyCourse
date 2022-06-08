@@ -38,7 +38,7 @@ let optionKVArray = (list, key) =>  {
 };
 
 /**
- * 时长格式化
+ * uniform length
  * @param value 例如：36000
  * @returns {string} 例如：10:00:00
  */
@@ -74,7 +74,7 @@ function PrefixInteger(num, length) {
 }
 
 /**
- * 格式化文件大小
+ * uniform file size
  * @param value
  * @returns {string}
  */

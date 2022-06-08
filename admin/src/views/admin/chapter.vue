@@ -69,7 +69,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">课程</label>
+                <label class="col-sm-2 control-label">Course</label>
                 <div class="col-sm-10">
                   <p class="form-control-static">{{course.name}}</p>
                 </div>
@@ -195,7 +195,7 @@
       },
 
       /**
-       * 点击【小节】
+       * click section
        */
       toSection(chapter) {
         let _this = this;

@@ -18,11 +18,11 @@ create table course (
 ) engine=innodb default charset=utf8mb4 comment='课程';
 
 insert into course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-values ('00000001', 'java, c++入门课程', '这是一门测试课程, 学习java, c++,和数据结构', 7200, 19.9, 'http://simply-course.oss-us-east-1.aliyuncs.com/course/3xzByd6GCMOocGK0qIa0kI.jpg', 3, 'c', 'p', 100, 0, now(), now());
+values ('00000001', 'java, c++ Intro', 'This is a course example for testing, it teaches Java and C++ intro lectures, help cs students make their first step into the coding world.', 7200, 19.9, 'http://simply-course.oss-us-east-1.aliyuncs.com/course/3xzByd6GCMOocGK0qIa0kI.jpg', 3, 'c', 'p', 100, 0, now(), now());
 insert into course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-values ('00000002', '机器学习高阶课程', '这是一门测试课程, 学习机器学习算法与模式', 2500, 200.9, 'http://simply-course.oss-us-east-1.aliyuncs.com/course/50D9sDaCYgoKOOcikCSkGo.jpg', 2, 'c', 'p', 100, 1, now(), now());
+values ('00000002', 'Advanced Machine learning', 'This is a course example for testing, it teaches advanced machine learning which may require solid knowledge and practices into machine learning and coding. But after learning this course you will deeply feel how powerful machine learning is, and probably become addicted to it.', 2500, 200.9, 'http://simply-course.oss-us-east-1.aliyuncs.com/course/50D9sDaCYgoKOOcikCSkGo.jpg', 2, 'c', 'p', 100, 1, now(), now());
 insert into course (id, name, summary, time, price, image, level, charge, status, enroll, sort, created_at, updated_at)
-values ('00000003', 'python实战', '这是一门测试课程, 学习python', 900, 20.9, 'http://simply-course.oss-us-east-1.aliyuncs.com/course/20ssDk0gqQGmo0q6YWI4i.jpg', 1, 'f', 'p', 100, 2, now(), now());
+values ('00000003', 'python dev', 'This is a course example for testing, it teaches intermediate Python language, very easy to startup as a Python developer, and its likely to get you the first job! only for $20.9!!!!', 900, 20.9, 'http://simply-course.oss-us-east-1.aliyuncs.com/course/20ssDk0gqQGmo0q6YWI4i.jpg', 1, 'f', 'p', 100, 2, now(), now());
 
 alter table `course` add column (`teacher_id` char(8) comment '讲师|teacher.id');
 
@@ -35,20 +35,20 @@ create table `chapter` (
   primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='大章';
 
-insert into `chapter` (id, course_id, name) values ('00000001', '00000001', '测试大章01');
-insert into `chapter` (id, course_id, name) values ('00000002', '00000001', '测试大章02');
-insert into `chapter` (id, course_id, name) values ('00000003', '00000001', '测试大章03');
-insert into `chapter` (id, course_id, name) values ('00000004', '00000001', '测试大章04');
-insert into `chapter` (id, course_id, name) values ('00000005', '00000001', '测试大章05');
-insert into `chapter` (id, course_id, name) values ('00000006', '00000001', '测试大章06');
-insert into `chapter` (id, course_id, name) values ('00000007', '00000001', '测试大章07');
-insert into `chapter` (id, course_id, name) values ('00000008', '00000002', '测试大章08');
-insert into `chapter` (id, course_id, name) values ('00000009', '00000002', '测试大章09');
-insert into `chapter` (id, course_id, name) values ('00000010', '00000002', '测试大章10');
-insert into `chapter` (id, course_id, name) values ('00000011', '00000002', '测试大章11');
-insert into `chapter` (id, course_id, name) values ('00000012', '00000002', '测试大章12');
-insert into `chapter` (id, course_id, name) values ('00000013', '00000003', '测试大章13');
-insert into `chapter` (id, course_id, name) values ('00000014', '00000003', '测试大章14');
+insert into `chapter` (id, course_id, name) values ('00000001', '00000001', 'test chapter 01');
+insert into `chapter` (id, course_id, name) values ('00000002', '00000001', 'test chapter 02');
+insert into `chapter` (id, course_id, name) values ('00000003', '00000001', 'test chapter 03');
+insert into `chapter` (id, course_id, name) values ('00000004', '00000001', 'test chapter 04');
+insert into `chapter` (id, course_id, name) values ('00000005', '00000001', 'test chapter 05');
+insert into `chapter` (id, course_id, name) values ('00000006', '00000001', 'test chapter 06');
+insert into `chapter` (id, course_id, name) values ('00000007', '00000001', 'test chapter 07');
+insert into `chapter` (id, course_id, name) values ('00000008', '00000002', 'test chapter 08');
+insert into `chapter` (id, course_id, name) values ('00000009', '00000002', 'test chapter 09');
+insert into `chapter` (id, course_id, name) values ('00000010', '00000002', 'test chapter 10');
+insert into `chapter` (id, course_id, name) values ('00000011', '00000002', 'test chapter 11');
+insert into `chapter` (id, course_id, name) values ('00000012', '00000002', 'test chapter 12');
+insert into `chapter` (id, course_id, name) values ('00000013', '00000003', 'test chapter 13');
+insert into `chapter` (id, course_id, name) values ('00000014', '00000003', 'test chapter 14');
 
 -- sections
 drop table if exists `section`;
@@ -87,7 +87,7 @@ create table `category` (
   primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='分类';
 
-insert into `category` (id, parent, name, sort) values ('00000100', '00000000', '前端技术', 100);
+insert into `category` (id, parent, name, sort) values ('00000100', '00000000', 'front-en', 100);
 insert into `category` (id, parent, name, sort) values ('00000101', '00000100', 'html/css', 101);
 insert into `category` (id, parent, name, sort) values ('00000102', '00000100', 'javascript', 102);
 insert into `category` (id, parent, name, sort) values ('00000103', '00000100', 'vue.js', 103);
@@ -95,44 +95,44 @@ insert into `category` (id, parent, name, sort) values ('00000104', '00000100', 
 insert into `category` (id, parent, name, sort) values ('00000105', '00000100', 'angular', 105);
 insert into `category` (id, parent, name, sort) values ('00000106', '00000100', 'node.js', 106);
 insert into `category` (id, parent, name, sort) values ('00000107', '00000100', 'jquery', 107);
-insert into `category` (id, parent, name, sort) values ('00000108', '00000100', '小程序', 108);
-insert into `category` (id, parent, name, sort) values ('00000200', '00000000', '后端技术', 200);
+insert into `category` (id, parent, name, sort) values ('00000108', '00000100', 'mini apps', 108);
+insert into `category` (id, parent, name, sort) values ('00000200', '00000000', 'back-end', 200);
 insert into `category` (id, parent, name, sort) values ('00000201', '00000200', 'java', 201);
 insert into `category` (id, parent, name, sort) values ('00000202', '00000200', 'springboot', 202);
 insert into `category` (id, parent, name, sort) values ('00000203', '00000200', 'spring cloud', 203);
 insert into `category` (id, parent, name, sort) values ('00000204', '00000200', 'ssm', 204);
 insert into `category` (id, parent, name, sort) values ('00000205', '00000200', 'python', 205);
-insert into `category` (id, parent, name, sort) values ('00000206', '00000200', '爬虫', 206);
-insert into `category` (id, parent, name, sort) values ('00000300', '00000000', '移动开发', 300);
+insert into `category` (id, parent, name, sort) values ('00000206', '00000200', 'web crawler', 206);
+insert into `category` (id, parent, name, sort) values ('00000300', '00000000', 'Mobile dev', 300);
 insert into `category` (id, parent, name, sort) values ('00000301', '00000300', 'android', 301);
 insert into `category` (id, parent, name, sort) values ('00000302', '00000300', 'ios', 302);
 insert into `category` (id, parent, name, sort) values ('00000303', '00000300', 'react native', 303);
 insert into `category` (id, parent, name, sort) values ('00000304', '00000300', 'ionic', 304);
-insert into `category` (id, parent, name, sort) values ('00000400', '00000000', '前沿技术', 400);
-insert into `category` (id, parent, name, sort) values ('00000401', '00000400', '微服务', 401);
-insert into `category` (id, parent, name, sort) values ('00000402', '00000400', '区块链', 402);
-insert into `category` (id, parent, name, sort) values ('00000403', '00000400', '机器学习', 403);
-insert into `category` (id, parent, name, sort) values ('00000404', '00000400', '深度学习', 404);
-insert into `category` (id, parent, name, sort) values ('00000405', '00000400', '数据分析&挖掘', 405);
-insert into `category` (id, parent, name, sort) values ('00000500', '00000000', '云计算&大数据', 500);
-insert into `category` (id, parent, name, sort) values ('00000501', '00000500', '大数据', 501);
+insert into `category` (id, parent, name, sort) values ('00000400', '00000000', 'advanced techniques', 400);
+insert into `category` (id, parent, name, sort) values ('00000401', '00000400', 'Micro services', 401);
+insert into `category` (id, parent, name, sort) values ('00000402', '00000400', 'Blockchain', 402);
+insert into `category` (id, parent, name, sort) values ('00000403', '00000400', 'Machine learning', 403);
+insert into `category` (id, parent, name, sort) values ('00000404', '00000400', 'Deep learning', 404);
+insert into `category` (id, parent, name, sort) values ('00000405', '00000400', 'Data analysis & mining', 405);
+insert into `category` (id, parent, name, sort) values ('00000500', '00000000', 'Cloud computing & Big data', 500);
+insert into `category` (id, parent, name, sort) values ('00000501', '00000500', 'Big data', 501);
 insert into `category` (id, parent, name, sort) values ('00000502', '00000500', 'hadoop', 502);
 insert into `category` (id, parent, name, sort) values ('00000503', '00000500', 'spark', 503);
 insert into `category` (id, parent, name, sort) values ('00000504', '00000500', 'hbase', 504);
-insert into `category` (id, parent, name, sort) values ('00000505', '00000500', '阿里云', 505);
+insert into `category` (id, parent, name, sort) values ('00000505', '00000500', 'Ali cloud', 505);
 insert into `category` (id, parent, name, sort) values ('00000506', '00000500', 'docker', 506);
 insert into `category` (id, parent, name, sort) values ('00000507', '00000500', 'kubernetes', 507);
-insert into `category` (id, parent, name, sort) values ('00000600', '00000000', '运维&测试', 600);
-insert into `category` (id, parent, name, sort) values ('00000601', '00000600', '运维', 601);
-insert into `category` (id, parent, name, sort) values ('00000602', '00000600', '自动化运维', 602);
-insert into `category` (id, parent, name, sort) values ('00000603', '00000600', '中间件', 603);
+insert into `category` (id, parent, name, sort) values ('00000600', '00000000', 'DevOps', 600);
+insert into `category` (id, parent, name, sort) values ('00000601', '00000600', 'Operations', 601);
+insert into `category` (id, parent, name, sort) values ('00000602', '00000600', 'Auto ops', 602);
+insert into `category` (id, parent, name, sort) values ('00000603', '00000600', 'Middleware', 603);
 insert into `category` (id, parent, name, sort) values ('00000604', '00000600', 'linux', 604);
-insert into `category` (id, parent, name, sort) values ('00000605', '00000600', '测试', 605);
-insert into `category` (id, parent, name, sort) values ('00000606', '00000600', '自动化测试', 606);
-insert into `category` (id, parent, name, sort) values ('00000700', '00000000', '数据库', 700);
-insert into `category` (id, parent, name, sort) values ('00000701', '00000700', 'mysql', 701);
-insert into `category` (id, parent, name, sort) values ('00000702', '00000700', 'redis', 702);
-insert into `category` (id, parent, name, sort) values ('00000703', '00000700', 'mongodb', 703);
+insert into `category` (id, parent, name, sort) values ('00000605', '00000600', 'Test', 605);
+insert into `category` (id, parent, name, sort) values ('00000606', '00000600', 'Auto test', 606);
+insert into `category` (id, parent, name, sort) values ('00000700', '00000000', 'Sql', 700);
+insert into `category` (id, parent, name, sort) values ('00000701', '00000700', 'Mysql', 701);
+insert into `category` (id, parent, name, sort) values ('00000702', '00000700', 'Redis', 702);
+insert into `category` (id, parent, name, sort) values ('00000703', '00000700', 'Mongodb', 703);
 
 # 课程分类
 drop table if exists `course_category`;
@@ -242,9 +242,9 @@ create table `role` (
   primary key (`id`)
 ) engine=innodb default charset=utf8mb4 comment='角色';
 
-insert into `role` values ('00000000', '系统管理员', '管理用户、角色权限');
-insert into `role` values ('00000001', '开发', '维护资源');
-insert into `role` values ('00000002', '业务管理员', '负责业务管理');
+insert into `role` values ('00000000', 'System manager', 'manage user/role resource/access');
+insert into `role` values ('00000001', 'Developer', 'sustain the resources');
+insert into `role` values ('00000002', 'Business manager', 'manage business');
 
 drop table if exists `role_resource`;
 create table `role_resource` (

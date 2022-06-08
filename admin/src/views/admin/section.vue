@@ -25,12 +25,12 @@
       <thead>
       <tr>
         <th>ID</th>
-        <th>标题</th>
+        <th>Title</th>
         <th>VOD</th>
-        <th>时长</th>
-        <th>收费</th>
-        <th>顺序</th>
-        <th>操作</th>
+        <th>Length</th>
+        <th>Charge</th>
+        <th>Sequence</th>
+        <th>Action</th>
       </tr>
       </thead>
 
@@ -64,33 +64,33 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">表单</h4>
+            <h4 class="modal-title">Form</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
               <div class="form-group">
-                <label class="col-sm-2 control-label">标题</label>
+                <label class="col-sm-2 control-label">Title</label>
                 <div class="col-sm-10">
                   <input v-model="section.title" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">课程</label>
+                <label class="col-sm-2 control-label">Course</label>
                 <div class="col-sm-10">
                   <p class="form-control-static">{{course.name}}</p>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">大章</label>
+                <label class="col-sm-2 control-label">Chapter</label>
                 <div class="col-sm-10">
                   <p class="form-control-static">{{chapter.name}}</p>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">视频</label>
+                <label class="col-sm-2 control-label">Video</label>
                 <div class="col-sm-10">
                   <vod v-bind:input-id="'video-upload'"
-                       v-bind:text="'上传VOD'"
+                       v-bind:text="'VOD upload'"
                        v-bind:suffixs="['mp4']"
                        v-bind:use="FILE_USE.COURSE.key"
                        v-bind:after-upload="afterUpload"></vod>
@@ -103,13 +103,13 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">时长</label>
+                <label class="col-sm-2 control-label">Length</label>
                 <div class="col-sm-10">
                   <input v-model="section.time" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">视频</label>
+                <label class="col-sm-2 control-label">Video</label>
                 <div class="col-sm-10">
                   <input v-model="section.video" class="form-control" disabled>
                 </div>
@@ -121,7 +121,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">收费</label>
+                <label class="col-sm-2 control-label">Charge</label>
                 <div class="col-sm-10">
                   <select v-model="section.charge" class="form-control">
                     <option v-for="o in SECTION_CHARGE" v-bind:value="o.key">{{o.value}}</option>
@@ -129,7 +129,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">顺序</label>
+                <label class="col-sm-2 control-label">Sequence</label>
                 <div class="col-sm-10">
                   <input v-model="section.sort" class="form-control">
                 </div>
@@ -137,8 +137,8 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button v-on:click="save()" type="button" class="btn btn-primary">保存</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button v-on:click="save()" type="button" class="btn btn-primary">Save</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -184,7 +184,7 @@
     },
     methods: {
       /**
-       * 点击【新增】
+       * click ass
        */
       add() {
         let _this = this;
@@ -193,7 +193,7 @@
       },
 
       /**
-       * 点击【编辑】
+       * click edit
        */
       edit(section) {
         let _this = this;
@@ -202,7 +202,7 @@
       },
 
       /**
-       * 列表查询
+       * list query
        */
       list(page) {
         let _this = this;
@@ -222,7 +222,7 @@
       },
 
       /**
-       * 点击【保存】
+       * click save
        */
       save(page) {
         let _this = this;
@@ -230,9 +230,9 @@
         _this.section.video = "";
         // 保存校验
         if (1 != 1
-          || !Validator.require(_this.section.title, "标题")
-          || !Validator.length(_this.section.title, "标题", 1, 50)
-          || !Validator.length(_this.section.video, "视频", 1, 200)
+          || !Validator.require(_this.section.title, "Title")
+          || !Validator.length(_this.section.title, "Title", 1, 50)
+          || !Validator.length(_this.section.video, "Video", 1, 200)
         ) {
           return;
         }
@@ -246,7 +246,7 @@
           if (resp.success) {
             $("#form-modal").modal("hide");
             _this.list(1);
-            Toast.success("保存成功！");
+            Toast.success("Save succeed!");
           } else {
             Toast.warning(resp.message)
           }
@@ -254,18 +254,18 @@
       },
 
       /**
-       * 点击【删除】
+       * click delete
        */
       del(id) {
         let _this = this;
-        Confirm.show("删除小节后不可恢复，确认删除？", function () {
+        Confirm.show("Delete is non-revertible, sure?", function () {
           Loading.show();
           _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/section/delete/' + id).then((response)=>{
             Loading.hide();
             let resp = response.data;
             if (resp.success) {
               _this.list(1);
-              Toast.success("删除成功！");
+              Toast.success("Delete succeed!");
             }
           })
         });
@@ -284,7 +284,7 @@
       },
 
       /**
-       * 获取时长
+       * get length
        */
       getTime() {
         let _this = this;
@@ -295,7 +295,7 @@
       },
 
       /**
-       * 播放视频
+       * play video
        * @param section
        */
       play(section) {

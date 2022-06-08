@@ -52,13 +52,13 @@ export default {
   },
   methods: {
     /**
-     * 查询新上好课
+     * query new courses
      */
     listNew() {
       let _this = this;
 
-      // 新上好课不经常变，又经常被访问，适合用缓存
-      // 判断是否有缓存
+      // new courses do not change much, and is visited often, suitable for session-storage
+      // tell whether session is empty
       let news = SessionStorage.get("news");
       if (!Tool.isEmpty(news)) {
         _this.news = news;
@@ -66,11 +66,11 @@ export default {
       }
 
       _this.$ajax.get(process.env.VUE_APP_SERVER + '/business/web/course/list-new').then((response) => {
-        console.log("查询新上好课结果：", response);
+        console.log("Query new courses results：", response);
         let resp = response.data;
         if (resp.success) {
           _this.news = resp.content;
-          // 保存到缓存
+          // save to session-storage
           SessionStorage.set("news", _this.news);
         }
       }).catch((response) => {

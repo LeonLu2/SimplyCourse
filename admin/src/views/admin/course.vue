@@ -3,12 +3,12 @@
     <p>
       <button v-on:click="add()" class="btn btn-white btn-default btn-round">
         <i class="ace-icon fa fa-edit"></i>
-        新增
+        Add
       </button>
       &nbsp;
       <button v-on:click="list(1)" class="btn btn-white btn-default btn-round">
         <i class="ace-icon fa fa-refresh"></i>
-        刷新
+        Refresh
       </button>
     </p>
 
@@ -53,24 +53,24 @@
              <p>{{course.summary}}</p>
              <p>
                <span class="badge badge-info">{{course.id}}</span>
-               <span class="badge badge-info">排序：{{course.sort}}</span>
+               <span class="badge badge-info">Sequence：{{course.sort}}</span>
                <span class="badge badge-info">{{course.time | formatSecond}}</span>
              </p>
              <p>
                <button v-on:click="toChapter(course)" class="btn btn-white btn-xs btn-info btn-round">
-                 大章
+                 Chapter
                </button>&nbsp;
                <button v-on:click="toContent(course)" class="btn btn-white btn-xs btn-info btn-round">
-                 内容
+                 Content
                </button>&nbsp;
                <button v-on:click="openSortModal(course)" class="btn btn-white btn-xs btn-info btn-round">
-                 排序
+                 Sequence
                </button>&nbsp;
                <button v-on:click="edit(course)" class="btn btn-white btn-xs btn-info btn-round">
-                 编辑
+                 Edit
                </button>&nbsp;
                <button v-on:click="del(course.id)" class="btn btn-white btn-xs btn-warning btn-round">
-                 删除
+                 Delete
                </button>
              </p>
            </div>
@@ -83,23 +83,23 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">表单</h4>
+            <h4 class="modal-title">Form</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
               <div class="form-group">
                 <label class="col-sm-2 control-label">
-                  分类
+                  Category
                 </label>
                 <div class="col-sm-10">
                   <ul id="tree" class="ztree"></ul>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">封面</label>
+                <label class="col-sm-2 control-label">Front-page</label>
                 <div class="col-sm-10">
                   <big-file v-bind:input-id="'image-upload'"
-                            v-bind:text="'上传封面'"
+                            v-bind:text="'Upload front-page'"
                             v-bind:suffixs="['jpg', 'jpeg', 'png']"
                             v-bind:use="FILE_USE.COURSE.key"
                             v-bind:after-upload="afterUpload">
@@ -112,13 +112,13 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">名称</label>
+                <label class="col-sm-2 control-label">Course title</label>
                 <div class="col-sm-10">
                   <input v-model="course.name" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">讲师</label>
+                <label class="col-sm-2 control-label">Teacher</label>
                 <div class="col-sm-10">
                   <select v-model="course.teacherId" class="form-control">
                     <option v-for="o in teachers" v-bind:value="o.id">{{o.name}}</option>
@@ -126,25 +126,25 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">概述</label>
+                <label class="col-sm-2 control-label">Description</label>
                 <div class="col-sm-10">
                   <input v-model="course.summary" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">时长</label>
+                <label class="col-sm-2 control-label">Length</label>
                 <div class="col-sm-10">
                   <input v-model="course.time" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">价格（元）</label>
+                <label class="col-sm-2 control-label">Price($)</label>
                 <div class="col-sm-10">
                   <input v-model="course.price" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">级别</label>
+                <label class="col-sm-2 control-label">Level</label>
                 <div class="col-sm-10">
                   <select v-model="course.level" class="form-control">
                     <option v-for="o in COURSE_LEVEL" v-bind:value="o.key">{{o.value}}</option>
@@ -152,7 +152,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">收费</label>
+                <label class="col-sm-2 control-label">Charge</label>
                 <div class="col-sm-10">
                   <select v-model="course.charge" class="form-control">
                     <option v-for="o in COURSE_CHARGE" v-bind:value="o.key">{{o.value}}</option>
@@ -160,7 +160,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">状态</label>
+                <label class="col-sm-2 control-label">Status</label>
                 <div class="col-sm-10">
                   <select v-model="course.status" class="form-control">
                     <option v-for="o in COURSE_STATUS" v-bind:value="o.key">{{o.value}}</option>
@@ -168,13 +168,13 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">报名数</label>
+                <label class="col-sm-2 control-label">Enrolled</label>
                 <div class="col-sm-10">
                   <input v-model="course.enroll" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">顺序</label>
+                <label class="col-sm-2 control-label">Sequence</label>
                 <div class="col-sm-10">
                   <input v-model="course.sort" class="form-control" disabled>
                 </div>
@@ -182,8 +182,8 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button v-on:click="save()" type="button" class="btn btn-primary">保存</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button v-on:click="save()" type="button" class="btn btn-primary">Save</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -194,13 +194,13 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">排序</h4>
+            <h4 class="modal-title">Sequence</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
               <div class="form-group">
                 <label class="control-label col-lg-3">
-                  当前排序
+                  Current sequence
                 </label>
                 <div class="col-lg-9">
                   <input class="form-control" v-model="sort.oldSort" name="oldSort" disabled>
@@ -208,7 +208,7 @@
               </div>
               <div class="form-group">
                 <label class="control-label col-lg-3">
-                  新排序
+                  New sequence
                 </label>
                 <div class="col-lg-9">
                   <input class="form-control" v-model="sort.newSort" name="newSort">
@@ -219,11 +219,11 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-white btn-default btn-round" data-dismiss="modal">
               <i class="ace-icon fa fa-times"></i>
-              取消
+              Cancel
             </button>
             <button type="button" class="btn btn-white btn-info btn-round" v-on:click="updateSort()">
               <i class="ace-icon fa fa-plus blue"></i>
-              更新排序
+              Update sequence
             </button>
           </div>
         </div><!-- /.modal-content -->
@@ -269,7 +269,7 @@
     },
     methods: {
       /**
-       * 点击【新增】
+       * click add
        */
       add() {
         let _this = this;
@@ -281,7 +281,7 @@
       },
 
       /**
-       * 点击【编辑】
+       * click edit
        */
       edit(course) {
         let _this = this;
@@ -291,7 +291,7 @@
       },
 
       /**
-       * 列表查询
+       * list query
        */
       list(page) {
         let _this = this;
@@ -309,24 +309,24 @@
       },
 
       /**
-       * 点击【保存】
+       * click save
        */
       save(page) {
         let _this = this;
 
         // 保存校验
         if (1 != 1
-          || !Validator.require(_this.course.name, "名称")
-          || !Validator.length(_this.course.name, "名称", 1, 50)
-          || !Validator.length(_this.course.summary, "概述", 1, 2000)
-          || !Validator.length(_this.course.image, "封面", 1, 100)
+          || !Validator.require(_this.course.name, "Name")
+          || !Validator.length(_this.course.name, "Name", 1, 50)
+          || !Validator.length(_this.course.summary, "Description", 1, 2000)
+          || !Validator.length(_this.course.image, "front-page", 1, 100)
         ) {
           return;
         }
 
         let categorys = _this.tree.getCheckedNodes();
         if (Tool.isEmpty(categorys)) {
-          Toast.warning("请选择分类！");
+          Toast.warning("Please choose category!");
           return;
         }
         _this.course.categorys = categorys;
@@ -338,7 +338,7 @@
           if (resp.success) {
             $("#form-modal").modal("hide");
             _this.list(1);
-            Toast.success("保存成功！");
+            Toast.success("Save succeed!");
           } else {
             Toast.warning(resp.message)
           }
@@ -346,25 +346,25 @@
       },
 
       /**
-       * 点击【删除】
+       * click delete
        */
       del(id) {
         let _this = this;
-        Confirm.show("删除课程后不可恢复，确认删除？", function () {
+        Confirm.show("Delete is non-revertible, sure?", function () {
           Loading.show();
           _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/course/delete/' + id).then((response)=>{
             Loading.hide();
             let resp = response.data;
             if (resp.success) {
               _this.list(1);
-              Toast.success("删除成功！");
+              Toast.success("Delete succeed!");
             }
           })
         });
       },
 
       /**
-       * 点击【大章】
+       * click chapters
        */
       toChapter(course) {
         let _this = this;
@@ -373,7 +373,7 @@
       },
 
       /**
-       * 点击【内容】
+       * click content
        */
       toContent(course) {
         let _this = this;
@@ -417,7 +417,7 @@
       },
 
       /**
-       * 查找课程下所有分类
+       * find all categories for course
        * @param courseId
        */
       listCategory(courseId) {
@@ -425,7 +425,7 @@
         Loading.show();
         _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course/list-category/' + courseId).then((res)=>{
           Loading.hide();
-          console.log("查找课程下所有分类结果：", res);
+          console.log("query all categories for the course: ", res);
           let response = res.data;
           let categorys = response.content;
 
@@ -449,12 +449,12 @@
       },
 
       /**
-       * 排序
+       * Sort
        */
       updateSort() {
         let _this = this;
         if (_this.sort.newSort === _this.sort.oldSort) {
-          Toast.warning("排序没有变化");
+          Toast.warning("Sort does not change");
           return;
         }
         Loading.show();
@@ -462,11 +462,11 @@
           let response = res.data;
 
           if (response.success) {
-            Toast.success("更新排序成功");
+            Toast.success("Update succeed!");
             $("#course-sort-modal").modal("hide");
             _this.list(1);
           } else {
-            Toast.error("更新排序失败");
+            Toast.error("Update failed!");
           }
         });
       },

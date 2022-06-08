@@ -249,7 +249,7 @@ export default {
   methods: {
 
     /**
-     * 打开登录注册窗口
+     * open login/register window
      */
     openLoginModal() {
       let _this = this;
@@ -300,7 +300,7 @@ export default {
       _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/member/register', _this.memberRegister).then((response) => {
         let resp = response.data;
         if (resp.success) {
-          Toast.success("注册成功");
+          Toast.success("Register succeed!");
         } else {
           Toast.warning(resp.message);
         }
@@ -323,7 +323,7 @@ export default {
       _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/member/login', _this.member).then((response) => {
         let resp = response.data;
         if (resp.success) {
-          console.log("登录成功：", resp.content);
+          console.log("Login succeed：", resp.content);
           let loginMember = resp.content;
           Tool.setLoginMember(resp.content);
 
@@ -354,7 +354,7 @@ export default {
       });
     },
     /**
-     * 加载图形验证码
+     * load captcha
      */
     loadImageCode: function () {
       let _this = this;
@@ -363,7 +363,7 @@ export default {
     },
 
     /**
-     * 发送注册短信
+     * Send verification massage
      */
     sendSmsForRegister() {
       let _this = this;
@@ -389,7 +389,7 @@ export default {
     },
 
     /**
-     * 发送短信
+     * send message
      */
     sendSmsCode(sms, btnId) {
       let _this = this;
@@ -410,7 +410,7 @@ export default {
     },
 
     /**
-     * 倒计时
+     * Count down
      * @param btnId
      */
     setTime(btnId) {
@@ -431,7 +431,7 @@ export default {
     },
 
     /**
-     * 发送忘记密码短信
+     * send forgot password message
      */
     sendSmsForForget() {
       let _this = this;
@@ -450,7 +450,7 @@ export default {
           _this.sendSmsCode(sms, "forget-send-code-btn");
         } else {
           _this.forgetMobileValidate = false;
-          Toast.warning("手机号未注册");
+          Toast.warning("Phone number has not registered yet");
         }
       });
     },
@@ -474,7 +474,7 @@ export default {
       _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/member/reset-password', _this.memberForget).then((res) => {
         let response = res.data;
         if (response.success) {
-          Toast.success("密码重置成功");
+          Toast.success("Password reset succeed!");
           _this.toLoginDiv();
         } else {
           Toast.warning(response.message);

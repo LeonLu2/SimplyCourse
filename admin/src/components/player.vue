@@ -19,7 +19,7 @@
     methods: {
       playUrl(url) {
         let _this = this;
-        console.log("开始播放:", url);
+        console.log("Start play:", url);
 
         //如果已经有播放器了，则将播放器div删除
         if (_this.aliPlayer) {
@@ -36,7 +36,7 @@
           source: url,
           cover: 'http://liveroom-img.oss-cn-qingdao.aliyuncs.com/logo.png',
         }, function (player) {
-          console.log('播放器创建好了。')
+          console.log('Player is ready.')
         });
       },
 
@@ -64,10 +64,10 @@
               cover: 'http://liveroom-img.oss-cn-qingdao.aliyuncs.com/logo.png',
               encryptType:1, //当播放私有加密流时需要设置。
             },function(player){
-              console.log('播放器创建好了。')
+              console.log('Player is ready.')
             });
           } else {
-            Toast.warning('播放错误。')
+            Toast.warning('Play failed.')
           }
         })
 

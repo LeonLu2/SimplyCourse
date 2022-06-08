@@ -1,6 +1,6 @@
 Tool = {
   /**
-   * 空校验 null或""都返回true
+   * null validate, return true for null or ""
    */
   isEmpty: function (obj) {
     if ((typeof obj == 'string')) {
@@ -11,21 +11,21 @@ Tool = {
   },
 
   /**
-   * 非空校验
+   * null validate
    */
   isNotEmpty: function (obj) {
     return !this.isEmpty(obj);
   },
 
   /**
-   * 长度校验
+   * length validate
    */
   isLength: function (str, min, max) {
     return $.trim(str).length >= min && $.trim(str).length <= max;
   },
 
   /**
-   * 时间格式化，date为空时取当前时间
+   * uniform date format
    */
   dateFormat: function (format, date) {
     let result;
@@ -50,7 +50,7 @@ Tool = {
   },
 
   /**
-   * 移除对象数组中的对象
+   * remove object in objective array
    * @param array
    * @param obj
    * @returns {number}
@@ -68,7 +68,7 @@ Tool = {
   },
 
   /**
-   * 10进制转62进制
+   * base 10 to base 62
    * @param number
    * @returns {string}
    * @private
@@ -86,21 +86,21 @@ Tool = {
   },
 
     /**
-     * 保存登录用户信息
+     * save login user info
      */
     setLoginUser: function (loginUser) {
       SessionStorage.set(SESSION_KEY_LOGIN_USER, loginUser);
     },
 
     /**
-     * 获取登录用户信息
+     * query login user info
      */
     getLoginUser: function () {
       return SessionStorage.get(SESSION_KEY_LOGIN_USER) || {};
     },
 
     /**
-     * 随机生成[len]长度的[radix]进制数
+     * random generate [len] length [radix] base number
      * @param len
      * @param radix 默认62
      * @returns {string}
@@ -118,7 +118,7 @@ Tool = {
    },
 
    /**
-    * 查找是否有权限
+    * find whether have resource
     * @param id 资源id
     */
    hasResource: function (id) {

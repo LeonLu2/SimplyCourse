@@ -13,11 +13,11 @@
       <thead>
       <tr>
         <th>id</th>
-        <th>手机号</th>
-        <th>验证码</th>
-        <th>用途</th>
-        <th>生成时间</th>
-        <th>用途</th>
+        <th>Phone number</th>
+        <th>Verification Code</th>
+        <th>Usage</th>
+        <th>Created at</th>
+        <th>Used/unused</th>
       </tr>
       </thead>
 
@@ -59,7 +59,7 @@
     },
     methods: {
       /**
-       * 点击【新增】
+       * click add
        */
       add() {
         let _this = this;
@@ -68,7 +68,7 @@
       },
 
       /**
-       * 点击【编辑】
+       * click edit
        */
       edit(sms) {
         let _this = this;
@@ -77,7 +77,7 @@
       },
 
       /**
-       * 列表查询
+       * list query
        */
       list(page) {
         let _this = this;

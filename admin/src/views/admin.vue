@@ -561,7 +561,7 @@
       $route: {
         handler:function(val, oldVal){
           // sidebar激活样式方法二
-          console.log("---->页面跳转：", val, oldVal);
+          console.log("---->Page refresh to：", val, oldVal);
           let _this = this;
 
           if (!_this.hasResourceRouter(val.name)) {

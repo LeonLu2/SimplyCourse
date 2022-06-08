@@ -7,7 +7,7 @@
     <hr>
 
     <file v-bind:input-id="'content-file-upload'"
-          v-bind:text="'上传文件'"
+          v-bind:text="'Upload file'"
           v-bind:suffixs="['jpg', 'jpeg', 'png', 'mp4']"
           v-bind:use="FILE_USE.COURSE.key"
           v-bind:after-upload="afterUploadContentFile"></file>
@@ -15,10 +15,10 @@
     <table id="file-table" class="table  table-bordered table-hover">
       <thead>
       <tr>
-        <th>名称</th>
-        <th>地址</th>
-        <th>大小</th>
-        <th>操作</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Size</th>
+        <th>Action</th>
       </tr>
       </thead>
 
@@ -30,7 +30,7 @@
         <td>
           <button v-on:click="delFile(f)" class="btn btn-white btn-xs btn-warning btn-round">
             <i class="ace-icon fa fa-times red2"></i>
-            删除
+            Delete
           </button>
         </td>
       </tr>
@@ -56,11 +56,11 @@
     <p>
       <button type="button" class="btn btn-white btn-info btn-round" v-on:click="saveContent()">
         <i class="ace-icon fa fa-plus blue"></i>
-        保存
+        Save
       </button>&nbsp;
       <router-link to="/business/course" type="button" class="btn btn-white btn-default btn-round" data-dismiss="modal">
         <i class="ace-icon fa fa-times"></i>
-        返回课程
+        Back to the course
       </router-link>
     </p>
   </div>
@@ -97,13 +97,13 @@
     },
     destroyed: function() {
       let _this = this;
-      console.log("组件销毁");
+      console.log("component destroyed");
       clearInterval(_this.saveContentInterval);
     },
     methods: {
 
       /**
-       * 打开内容编辑框
+       * init the content edit modal
        */
       init() {
         let _this = this;
@@ -142,7 +142,7 @@
       },
 
       /**
-       * 保存内容
+       * save content
        */
       saveContent () {
         let _this = this;
@@ -154,10 +154,10 @@
           Loading.hide();
           let resp = response.data;
           if (resp.success) {
-            // Toast.success("内容保存成功");
+            // Toast.success("Content saved!");
             // let now = Tool.dateFormat("yyyy-MM-dd hh:mm:ss");
             let now = Tool.dateFormat("mm:ss");
-            _this.saveContentLabel = "最后保存时间：" + now;
+            _this.saveContentLabel = "Last update at：" + now;
           } else {
             Toast.warning(resp.message);
           }
@@ -165,7 +165,7 @@
       },
 
       /**
-       * 加载内容文件列表
+       * load content_file table
        */
       listContentFiles() {
         let _this = this;
@@ -178,18 +178,18 @@
       },
 
       /**
-       * 上传内容文件后，保存内容文件记录
+       * after upload file in content, save its record
        */
       afterUploadContentFile(response) {
         let _this = this;
-        console.log("开始保存文件记录");
+        console.log("Start content file upload saving record");
         let file = response.content;
         file.courseId = _this.course.id;
         file.url = file.path;
         _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/admin/course-content-file/save', file).then((response)=>{
           let resp = response.data;
           if (resp.success) {
-            Toast.success("上传文件成功");
+            Toast.success("Upload succeed!");
             _this.files.push(resp.content);
           }
         });
@@ -197,15 +197,15 @@
       },
 
       /**
-       * 删除内容文件
+       * Delete file in content
        */
       delFile(f) {
         let _this = this;
-        Confirm.show("删除课程后不可恢复，确认删除？", function () {
+        Confirm.show("Delete is non-revertible, sure?", function () {
           _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/course-content-file/delete/' + f.id).then((response)=>{
             let resp = response.data;
             if (resp.success) {
-              Toast.success("删除文件成功");
+              Toast.success("Delete succeed!");
               Tool.removeObj(_this.files, f);
             }
           });

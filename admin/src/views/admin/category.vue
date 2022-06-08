@@ -5,12 +5,12 @@
         <p>
           <button v-on:click="add1()" class="btn btn-white btn-default btn-round">
             <i class="ace-icon fa fa-edit"></i>
-            新增一级
+            Add level 1 category
           </button>
           &nbsp;
           <button v-on:click="all()" class="btn btn-white btn-default btn-round">
             <i class="ace-icon fa fa-refresh"></i>
-            刷新
+            Refresh
           </button>
         </p>
 
@@ -18,9 +18,9 @@
           <thead>
           <tr>
             <th>id</th>
-            <th>名称</th>
-            <th>顺序</th>
-            <th>操作</th>
+            <th>Name</th>
+            <th>Sequence</th>
+            <th>Action</th>
           </tr>
           </thead>
 
@@ -47,7 +47,7 @@
         <p>
           <button v-on:click="add2()" class="btn btn-white btn-default btn-round">
             <i class="ace-icon fa fa-edit"></i>
-            新增二级
+            Add level 2 category
           </button>
         </p>
 
@@ -55,9 +55,9 @@
           <thead>
           <tr>
             <th>id</th>
-            <th>名称</th>
-            <th>顺序</th>
-            <th>操作</th>
+            <th>Name</th>
+            <th>Sequence</th>
+            <th>Action</th>
           </tr>
           </thead>
 
@@ -88,24 +88,24 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">表单</h4>
+            <h4 class="modal-title">Form</h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
               <div class="form-group">
-                <label class="col-sm-2 control-label">父分类</label>
+                <label class="col-sm-2 control-label">Parent category</label>
                 <div class="col-sm-10">
                   <p class="form-control-static">{{active.name || "无"}}</p>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">名称</label>
+                <label class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
                   <input v-model="category.name" class="form-control">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">顺序</label>
+                <label class="col-sm-2 control-label">Sequence</label>
                 <div class="col-sm-10">
                   <input v-model="category.sort" class="form-control">
                 </div>
@@ -113,8 +113,8 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            <button v-on:click="save()" type="button" class="btn btn-primary">保存</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <button v-on:click="save()" type="button" class="btn btn-primary">Save</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -143,7 +143,7 @@
     },
     methods: {
       /**
-       * 点击【新增一级】
+       * click add level 1 category
        */
       add1() {
         let _this = this;
@@ -156,12 +156,12 @@
       },
 
       /**
-       * 点击【新增二级】
-       */
+       * click add level 2 category
+       **/
       add2() {
         let _this = this;
         if (Tool.isEmpty(_this.active)) {
-          Toast.warning("请先点击一级分类");
+          Toast.warning("Please choose level 1 category first");
           return;
         }
         _this.category = {
@@ -171,7 +171,7 @@
       },
 
       /**
-       * 点击【编辑】
+       * click edit
        */
       edit(category) {
         let _this = this;
@@ -180,7 +180,7 @@
       },
 
       /**
-       * 列表查询
+       * list query
        */
       all() {
         let _this = this;
@@ -217,16 +217,16 @@
       },
 
       /**
-       * 点击【保存】
+       * click save
        */
       save() {
         let _this = this;
 
         // 保存校验
         if (1 != 1
-          || !Validator.require(_this.category.parent, "父id")
-          || !Validator.require(_this.category.name, "名称")
-          || !Validator.length(_this.category.name, "名称", 1, 50)
+          || !Validator.require(_this.category.parent, "Parent id")
+          || !Validator.require(_this.category.name, "Category name")
+          || !Validator.length(_this.category.name, "Category name", 1, 50)
         ) {
           return;
         }
@@ -238,7 +238,7 @@
           if (resp.success) {
             $("#form-modal").modal("hide");
             _this.all();
-            Toast.success("保存成功！");
+            Toast.success("Save succeed!");
           } else {
             Toast.warning(resp.message)
           }
@@ -246,18 +246,18 @@
       },
 
       /**
-       * 点击【删除】
+       * click delete
        */
       del(id) {
         let _this = this;
-        Confirm.show("删除分类后不可恢复，确认删除？", function () {
+        Confirm.show("Delete is non-revertible, sure?", function () {
           Loading.show();
           _this.$ajax.delete(process.env.VUE_APP_SERVER + '/business/admin/category/delete/' + id).then((response)=>{
             Loading.hide();
             let resp = response.data;
             if (resp.success) {
               _this.all();
-              Toast.success("删除成功！");
+              Toast.success("Delete success");
             }
           })
         });

@@ -44,7 +44,7 @@
     },
     methods: {
       /**
-       * 列表查询
+       * query list
        */
       list() {
         let _this = this;
@@ -59,14 +59,14 @@
       },
 
       /**
-       * 点击【保存】
+       * click save
        */
       save() {
         let _this = this;
 
         // 保存校验
         if (Tool.isEmpty(_this.resourceStr)) {
-          Toast.warning("资源不能为空！");
+          Toast.warning("Resource cannot be null!");
           return;
         }
         let json = JSON.parse(_this.resourceStr);
@@ -78,7 +78,7 @@
           if (resp.success) {
             $("#form-modal").modal("hide");
             _this.list(1);
-            Toast.success("保存成功！");
+            Toast.success("Save succeed!");
           } else {
             Toast.warning(resp.message)
           }
@@ -86,25 +86,25 @@
       },
 
       /**
-       * 点击【删除】
+       * click delete
        */
       del(id) {
         let _this = this;
-        Confirm.show("删除资源后不可恢复，确认删除？", function () {
+        Confirm.show("Delete is non-revertible, sure?", function () {
           Loading.show();
           _this.$ajax.delete(process.env.VUE_APP_SERVER + '/system/admin/resource/delete/' + id).then((response)=>{
             Loading.hide();
             let resp = response.data;
             if (resp.success) {
               _this.list(1);
-              Toast.success("删除成功！");
+              Toast.success("Delete succeed!");
             }
           })
         });
       },
 
       /**
-       * 初始资源树
+       * init resource tree
        */
       initTree() {
         let _this = this;

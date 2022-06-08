@@ -40,7 +40,7 @@
           source: url,
           cover: 'http://liveroom-img.oss-cn-qingdao.aliyuncs.com/logo.png',
         }, function (player) {
-          console.log('播放器创建好了。')
+          console.log('Player is ready.')
         });
       },
 
@@ -67,10 +67,10 @@
               cover: '/static/image/video-image.png',
               encryptType:1, //当播放私有加密流时需要设置。
             },function(player){
-              console.log('播放器创建好了。')
+              console.log('Player is ready.')
             });
           } else {
-            Toast.warning('播放错误。')
+            Toast.warning('Play failed.')
           }
         })
 

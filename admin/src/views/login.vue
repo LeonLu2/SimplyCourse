@@ -47,7 +47,7 @@
                             <div class="input-group">
                               <input v-model="user.imageCode" type="text" class="form-control" placeholder="Captcha">
                               <span class="input-group-addon" id="basic-addon2">
-                                <img v-on:click="loadImageCode()" id="image-code" alt="验证码"/>
+                                <img v-on:click="loadImageCode()" id="image-code" alt="Captcha"/>
                               </span>
                             </div>
                           </span>
@@ -130,7 +130,7 @@ export default {
          Loading.hide();
          let resp = response.data;
          if (resp.success) {
-           console.log("登录成功：", resp.content);
+           console.log("Login success：", resp.content);
            let loginUser = resp.content;
            Tool.setLoginUser(resp.content);
 

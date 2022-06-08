@@ -27,7 +27,7 @@
 
         <div class="row">
 
-          <!-- 课程内容 & 大章小节 -->
+          <!-- Course content & Chapters Sections -->
           <div class="col-md-9">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
@@ -77,7 +77,7 @@
 
           </div>
 
-          <!-- 讲师信息 -->
+          <!-- Teacher info -->
           <div class="col-md-3">
             <div class="card" style="width: 18rem;">
               <img v-bind:src="teacher.image" class="card-img-top">
@@ -130,10 +130,10 @@ export default {
         _this.chapters = _this.course.chapters || [];
         _this.sections = _this.course.sections || [];
 
-        // 获取报名信息
+        // get enroll info
         _this.getEnroll();
 
-        // 将所有的节放入对应的章中
+        // put sections into chapters
         for (let i = 0; i < _this.chapters.length; i++) {
           let c = _this.chapters[i];
           c.sections = [];
@@ -150,7 +150,7 @@ export default {
     },
 
     /**
-     * 展开/收缩一个章节
+     * expand/fold a chapter
      * @param chapter
      */
     doFolded (chapter, i) {
@@ -161,7 +161,7 @@ export default {
     },
 
     /**
-     * 播放视频
+     * play video
      * @param section
      */
     play(section) {
@@ -169,8 +169,8 @@ export default {
       if (section.charge === _this.SECTION_CHARGE.CHARGE.key) {
         let loginMember = Tool.getLoginMember();
         if (Tool.isEmpty(loginMember)) {
-          // Toast.warning("请先登录");
-          // 触发打开登录窗口事件，用到事件总线
+          // Toast.warning("please login first");
+          // submit message for event-bus
           _this.$event.$emit("openLoginModal", "111");
           return;
         } else {
@@ -184,13 +184,13 @@ export default {
     },
 
     /**
-     * 报名
+     * enroll
      */
     enroll() {
       let _this = this;
       let loginMember = Tool.getLoginMember();
       if (Tool.isEmpty(loginMember)) {
-        Toast.warning("请先登录");
+        Toast.warning("Please login first");
         return;
       }
       _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/member-course/enroll', {
@@ -200,7 +200,7 @@ export default {
         let resp = response.data;
         if (resp.success) {
           _this.memberCourse = resp.content;
-          Toast.success("报名成功！");
+          Toast.success("Enrolled!");
         } else {
           Toast.warning(resp.message);
         }
@@ -208,13 +208,13 @@ export default {
     },
 
     /**
-     * 获取报名
+     * query enroll
      */
     getEnroll() {
       let _this = this;
       let loginMember = Tool.getLoginMember();
       if (Tool.isEmpty(loginMember)) {
-        console.log("未登录");
+        console.log("Have not login yet");
         return;
       }
       _this.$ajax.post(process.env.VUE_APP_SERVER + '/business/web/member-course/get-enroll', {

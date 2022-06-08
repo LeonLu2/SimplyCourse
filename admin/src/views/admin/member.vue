@@ -13,11 +13,11 @@
       <thead>
       <tr>
         <th>id</th>
-        <th>手机号</th>
-        <th>密码</th>
-        <th>昵称</th>
-        <th>头像url</th>
-        <th>注册时间</th>
+        <th>Phone number</th>
+        <th>Password</th>
+        <th>Nickname</th>
+        <th>Image url</th>
+        <th>Registration time</th>
       </tr>
       </thead>
 
@@ -57,7 +57,7 @@
     },
     methods: {
       /**
-       * 列表查询
+       * query list
        */
       list(page) {
         let _this = this;
