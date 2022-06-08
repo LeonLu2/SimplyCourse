@@ -66,7 +66,7 @@ npm install
 
 ## Page visit
 * admin address: http://localhost:8080/login<br>
-initial user name and password：test/test
+initial user name and password：test/1234
 * web address: http://localhost:8081<br>
  support user registration, verification code can be viewed in log or sms table
 
