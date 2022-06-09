@@ -9,7 +9,7 @@
           <router-link v-bind:to="'/detail?id=' + course.id" class="btn btn-outline-secondary">Details</router-link>
         </div>
         <div class="text-muted">
-          <span class="badge badge-info"><i class="fa fa-yen" aria-hidden="true"></i>&nbsp;{{ course.price }}</span>&nbsp;
+          <span class="badge badge-info"><i class="fa-solid fa-dollar-sign" aria-hidden="true"></i>&nbsp;{{ course.price }}</span>&nbsp;
           <span class="badge badge-info"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;{{course.enroll}}</span>&nbsp;
           <span class="badge badge-info">{{COURSE_LEVEL | optionKV(course.level)}}</span>
         </div>

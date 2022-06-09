@@ -15,7 +15,7 @@
             </p>
             <p class="course-head-desc">{{ course.summary }}</p>
             <p class="course-head-price">
-              <span class="price-now text-danger"><i class="fa fa-yen"></i>&nbsp;{{ course.price }}&nbsp;&nbsp;</span>
+              <span class="price-now text-danger"><i class="fa-solid fa-dollar-sign"></i>&nbsp;{{ course.price }}&nbsp;&nbsp;</span>
             </p>
             <p class="course-head-button-links">
               <a v-show="!memberCourse.id" v-on:click="enroll()" class="btn btn-lg btn-primary btn-shadow"
@@ -60,7 +60,7 @@
                         <td class="col-sm-8 col-xs-12">
                           <div v-on:click="play(s)" class="section-title">
                             <i class="fa fa-video-camera d-none d-sm-inline"></i>&nbsp;&nbsp;
-                            <span class="d-none d-sm-inline">第{{ j + 1 }}节&nbsp;&nbsp;</span>
+                            <span class="d-none d-sm-inline">Lesson {{ j + 1 }}&nbsp;&nbsp;</span>
                             {{ s.title }}
                             <span v-show="s.charge !== SECTION_CHARGE.CHARGE.key" class="badge badge-primary hidden-xs">免费</span>
                           </div>
