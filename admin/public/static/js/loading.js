@@ -15,6 +15,6 @@ Loading = {
     // loading is too fast, so make some delay
     setTimeout(function () {
       $.unblockUI();
-    }, 500)
+    }, 50)
   }
 };

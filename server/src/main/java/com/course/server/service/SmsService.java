@@ -2,8 +2,8 @@ package com.course.server.service;
 
 import com.course.server.domain.Sms;
 import com.course.server.domain.SmsExample;
-import com.course.server.dto.SmsDto;
 import com.course.server.dto.PageDto;
+import com.course.server.dto.SmsDto;
 import com.course.server.enums.SmsStatusEnum;
 import com.course.server.exception.BusinessException;
 import com.course.server.exception.BusinessExceptionCode;
@@ -18,8 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class SmsService {
@@ -35,6 +35,7 @@ public class SmsService {
     public void list(PageDto pageDto) {
         PageHelper.startPage(pageDto.getPage(), pageDto.getSize());
         SmsExample smsExample = new SmsExample();
+        smsExample.setOrderByClause("at desc");
         List<Sms> smsList = smsMapper.selectByExample(smsExample);
         PageInfo<Sms> pageInfo = new PageInfo<>(smsList);
         pageDto.setTotal(pageInfo.getTotal());
