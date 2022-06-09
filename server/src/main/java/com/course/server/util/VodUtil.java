@@ -155,9 +155,9 @@ public class VodUtil {
 
     public static void main(String[] argv) {
         //您的AccessKeyId
-        String accessKeyId = "LTAI5t7as47M1DDzs4cSUDJf";
+        String accessKeyId = "AAAA5t7as47M1DDzs4cSUDJf";
         //您的AccessKeySecret
-        String accessKeySecret = "gURPV4WYUAhTyQY8azwaQmulm9DnIP";
+        String accessKeySecret = "AAAAV4WYUAhTyQY8azwaQmulm9DnIP";
         //需要上传到VOD的本地视频文件的完整路径，需要包含文件扩展名
         String localFile = "C:\\Users\\njlsh\\OneDrive\\桌面\\test video 2.mp4";
         try {
